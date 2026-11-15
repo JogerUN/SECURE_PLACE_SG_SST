@@ -1,0 +1,1964 @@
+<!DOCTYPE html><html class="h-full bg-slate-50" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<title>Secure Place | SG-SST Colombia</title>
+<!-- BEGIN: External Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- END: External Tailwind CSS v3 -->
+<!-- BEGIN: Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#F0FDFA',
+              100: '#CCFBF1',
+              500: '#14B8A6',
+              600: '#0D9488',
+              700: '#0F766E',
+              800: '#115E59',
+              900: '#134E4A'
+            },
+            charcoal: {
+              700: '#334155',
+              800: '#1E293B',
+              900: '#0F172A'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<!-- BEGIN: Custom Styling for Layout and Transitions -->
+<style data-purpose="layout-and-transitions">
+    /* Custom scrollbars for high density dashboard panels */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+    
+    /* Interactive accessible outline focus */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid #0D9488;
+      outline-offset: 2px;
+    }
+    
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1rem;
+    }
+  </style>
+<!-- END: Custom Styling for Layout and Transitions -->
+</head>
+<body class="h-full text-slate-800 antialiased font-sans flex flex-col bg-slate-100 selection:bg-brand-500 selection:text-white" style="font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; background-color: rgb(246, 243, 238);">
+<!-- BEGIN: Application Shell -->
+<div class="flex h-screen overflow-hidden" data-purpose="app-shell">
+<!-- BEGIN: Sidebar Navigation -->
+
+<aside aria-label="Navegación principal" class="w-64 text-slate-800 border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-300 z-30 overflow-hidden" id="main-sidebar" style="background-color: #fbf5e5;">
+  <!-- Logo and App Identity -->
+  <div class="p-4 border-b border-slate-200/70 flex flex-col gap-2 relative" data-stitch-orig-opacity="1">
+    <div class="flex items-center justify-end w-full" id="sidebar-header-controls">
+      <button 
+        type="button"
+        id="sidebar-toggle-btn"
+        aria-expanded="true" 
+        aria-controls="sidebar-nav-container"
+        aria-label="Alternar menú principal"
+        class="p-2 rounded-full text-slate-800 hover:bg-slate-200/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-800 transition-colors cursor-pointer"
+      >
+        <svg class="w-5 h-5" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex items-center justify-center w-full px-2 py-1 transition-all duration-300" id="sidebar-logo-wrapper">
+      <img 
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBCtbtt7rUG7kE_i8nFUgjsbFtXPU1qJbdGKiDaYzksB1h4wiMY10I0o4NgU_Q8B0EaZzD-gJeozKqttHSUey99xK3jzIXnFFNWSQACtJsqU6F02Ze2aCwgTEL4sO2jJl5JvXgdPiwI5_hKvMq_D-HMyEv9QfQsY47Bv3ix-KftTHNCNq51CCpoeBf9fNblUq7LvKCg-WdeF3CesRqJ0gQUDwPLVuzBgMHvWZUWy1_ItWMsbyAHWKm" 
+        alt="Secure Place Logo" 
+        class="h-28 w-auto max-w-full object-contain mix-blend-multiply transition-all duration-300"
+      >
+    </div>
+  </div>
+
+  <!-- Navigation Links (Dynamic per role) -->
+  <nav class="flex-1 overflow-y-auto overflow-x-hidden px-3 py-4 space-y-1" id="sidebar-nav-container">
+    <button onclick="navigateToView('dashboard')" title="Dashboard" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors bg-brand-600 text-white font-semibold shadow-xs" aria-current="page">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+      <span class="sidebar-label truncate">Dashboard</span>
+    </button>
+
+    <button onclick="navigateToView('empleados')" title="Empleados" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 font-medium" aria-current="false">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+      <span class="sidebar-label truncate">Empleados</span>
+    </button>
+
+    <button onclick="navigateToView('reuniones')" title="Reuniones COPASST" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 font-medium" aria-current="false">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      <span class="sidebar-label truncate">Reuniones COPASST</span>
+    </button>
+
+    <button onclick="navigateToView('actas')" title="Actas" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 font-medium" aria-current="false">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      <span class="sidebar-label truncate">Actas</span>
+    </button>
+
+    <button onclick="navigateToView('capacitaciones')" title="Capacitaciones" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 font-medium" aria-current="false">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+      <span class="sidebar-label truncate">Capacitaciones</span>
+    </button>
+
+    <button onclick="navigateToView('autorreporte')" title="Autorreporte" class="nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 font-medium" aria-current="false">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+      <span class="sidebar-label truncate">Autorreporte</span>
+    </button>
+  </nav>
+
+  <!-- Sidebar Footer / Legal Compliance Badge -->
+  <div class="p-4 border-t border-slate-200/80 bg-black/5 transition-all duration-300" id="sidebar-footer" data-purpose="compliance-widget">
+    <div class="flex items-center justify-between text-xs mb-1.5">
+      <span class="font-bold text-slate-900">Cumplimiento Legal</span>
+      <span class="font-bold text-teal-600" id="compliance-percentage">94.2%</span>
+    </div>
+    <div class="w-full bg-slate-300/80 rounded-full h-1.5 overflow-hidden">
+      <div class="bg-teal-600 h-1.5 rounded-full" style="width: 94.2%;"></div>
+    </div>
+    <div class="mt-2 flex items-center justify-between text-[11px] font-semibold text-slate-900">
+      <span>Estándares mínimos</span>
+      <span class="text-emerald-700 font-bold">Conforme</span>
+    </div>
+  </div>
+</aside>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.getElementById('main-sidebar');
+    const toggleBtn = document.getElementById('sidebar-toggle-btn');
+    const headerControls = document.getElementById('sidebar-header-controls');
+    const logoWrapper = document.getElementById('sidebar-logo-wrapper');
+    const sidebarFooter = document.getElementById('sidebar-footer');
+    const labels = document.querySelectorAll('.sidebar-label');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      const nextState = !isExpanded;
+
+      // 1. Actualizar estado ARIA
+      toggleBtn.setAttribute('aria-expanded', String(nextState));
+
+      // 2. Alternar ancho del contenedor principal (w-64 = 256px vs w-20 = 80px)
+      sidebar.classList.toggle('w-64', nextState);
+      sidebar.classList.toggle('w-20', !nextState);
+
+      // 3. Centrar el botón hamburguesa cuando está colapsado
+      headerControls.classList.toggle('justify-end', nextState);
+      headerControls.classList.toggle('justify-center', !nextState);
+
+      // 4. Ocultar textos, logo grande y widget inferior al colapsar
+      labels.forEach(label => label.classList.toggle('hidden', !nextState));
+      logoWrapper.classList.toggle('hidden', !nextState);
+      sidebarFooter.classList.toggle('hidden', !nextState);
+
+      // 5. Centrar los íconos de navegación en modo mini-rail
+      navItems.forEach(item => {
+        item.classList.toggle('justify-center', !nextState);
+      });
+    });
+  });
+</script>
+
+<!-- END: Sidebar Navigation -->
+<!-- BEGIN: Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- BEGIN: Topbar Header -->
+<header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between flex-shrink-0 z-20 shadow-xs" data-purpose="topbar-header" style="border-color: rgb(229, 226, 221);">
+<!-- Saludo Dinámico & Mobile menu trigger -->
+<div class="flex items-center gap-3">
+<button aria-label="Abrir menú" class="lg:hidden p-2 rounded-md text-slate-500 hover:bg-slate-100" id="mobile-menu-btn">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div>
+<h1 class="text-base sm:text-lg font-bold text-slate-800 leading-tight" id="user-greeting">Buen día, Carlos Rodríguez (Administrador)</h1>
+<p class="text-xs text-slate-500 font-medium" id="user-role-label">Rol activo: Administrador de SST</p>
+</div>
+</div>
+<!-- Role Switcher & Action Controls -->
+<div class="flex items-center gap-4">
+<!-- Segmented Role Switcher -->
+<div aria-label="Selector de Rol de Usuario" class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" role="group">
+<button aria-pressed="true" class="px-3 py-1.5 text-xs font-semibold rounded-md shadow-xs transition-colors bg-white text-teal-600" id="role-admin-btn" onclick="switchRole('admin')" type="button">
+              Administrador
+            </button>
+<button aria-pressed="false" class="px-3 py-1.5 text-xs font-semibold rounded-md transition-colors text-slate-600 hover:text-slate-900" id="role-employee-btn" onclick="switchRole('employee')" type="button">
+              Empleado
+            </button>
+</div>
+<!-- Notification Bell with Dropdown Preview -->
+<div class="relative" data-purpose="notifications-center">
+<button aria-label="Ver 2 notificaciones nuevas" class="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full relative" id="notif-toggle-btn" onclick="toggleNotifications()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-rose-500 border-2 border-white rounded-full"></span>
+</button>
+<!-- Dropdown content -->
+<div class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-slate-200 py-2 z-50" id="notif-menu">
+<div class="px-4 py-2 border-b border-slate-100 font-semibold text-xs text-slate-700 uppercase tracking-wider">Alertas SG-SST Prioritarias</div>
+<div class="divide-y divide-slate-100 max-h-64 overflow-y-auto">
+<a class="block px-4 py-2.5 hover:bg-slate-50 text-left" href="javascript:void(0)" onclick="navigateToView('autorreporte'); toggleNotifications();">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<p class="text-xs font-semibold text-slate-800">Nuevo autorreporte radicado #AR-104</p>
+</div>
+<p class="text-[11px] text-slate-500 pl-4 mt-0.5">Reporte de condición insegura en Bodega Central.</p>
+</a>
+<a class="block px-4 py-2.5 hover:bg-slate-50 text-left" href="javascript:void(0)" onclick="navigateToView('reuniones'); toggleNotifications();">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-brand-500"></span>
+<p class="text-xs font-semibold text-slate-800">Reunión COPASST programada</p>
+</div>
+<p class="text-[11px] text-slate-500 pl-4 mt-0.5">Comité ordinario mensual en 2 horas - Sala 3.</p>
+</a>
+</div>
+</div>
+</div>
+<!-- User Profile Avatar Pill -->
+<div class="flex items-center gap-2 border-l border-slate-200 pl-3">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center border-2 border-white shadow-xs" id="user-avatar">CR</div>
+<span class="bottom-0 right-0 absolute w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></span>
+</div>
+<span class="hidden md:inline-block text-xs font-semibold text-slate-700" id="user-name-short">C. Rodríguez</span>
+</div>
+</div>
+</header>
+<!-- END: Topbar Header -->
+<!-- BEGIN: Scrollable Dynamic Main Container -->
+<main class="flex-1 overflow-y-auto p-4 md:p-6" data-purpose="main-router-viewport" id="main-content-viewport" style="background-color: rgb(252, 249, 244);">
+<!-- ========================================== -->
+<!-- VIEW: DASHBOARD (ADMIN & EMPLEADO)         -->
+<!-- ========================================== -->
+<section class="space-y-6" data-purpose="view-dashboard" id="view-dashboard">
+<!-- Top KPI stats cards (Visible primarily for Admin, customized for Employee) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="dashboard-kpis-admin">
+<div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase">Total Empleados</p>
+<h3 class="text-2xl font-bold text-slate-800 mt-1">148</h3>
+<span class="text-[11px] text-emerald-600 font-medium">100% afiliados ARL</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase">Actas Vigentes</p>
+<h3 class="text-2xl font-bold text-slate-800 mt-1">12</h3>
+<span class="text-[11px] text-slate-500 font-medium">100% quórum legal</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase">Capacitaciones Mes</p>
+<h3 class="text-2xl font-bold text-slate-800 mt-1">4</h3>
+<span class="text-[11px] text-amber-600 font-medium">2 programadas esta semana</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 border border-slate-200 shadow-xs flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase">Casos Autorreporte</p>
+<h3 class="text-2xl font-bold text-rose-600 mt-1">3 Abiertos</h3>
+<span class="text-[11px] text-rose-500 font-medium">1 condición prioritaria</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+<!-- Employee Welcome Banner when in Employee role -->
+<div class="hidden bg-gradient-to-r from-brand-700 to-teal-800 text-white rounded-xl p-5 shadow-sm" id="dashboard-kpis-employee">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div>
+<span class="inline-block px-2.5 py-1 bg-white/20 backdrop-blur rounded text-xs font-semibold mb-2">Portal del Empleado</span>
+<h2 class="text-xl font-bold">Espacio de Seguridad &amp; Autocuidado</h2>
+<p class="text-sm text-teal-100 max-w-2xl mt-1">Aquí puedes consultar las actas de SST, verificar tus capacitaciones y reportar incidentes o radicar incapacidades con soporte médico inmediato.</p>
+</div>
+<button class="px-4 py-2.5 bg-white text-brand-800 font-semibold text-xs rounded-lg shadow-md hover:bg-slate-50 transition-colors flex items-center gap-2" onclick="navigateToView('autorreporte'); openReportModal();">
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Generar Autorreporte
+              </button>
+</div>
+</div>
+<!-- Main Calendar Section with Controls -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+<!-- Calendar Header Toolbar -->
+<div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center font-bold">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<h2 class="text-base font-bold text-slate-800">Calendario SST</h2>
+<p class="text-xs text-slate-500">Cronograma de actividades preventivas y reuniones</p>
+</div>
+</div>
+<!-- Filters & Month Selection -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Event Category Filter -->
+<div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs">
+<span class="text-slate-500 px-2 font-medium">Filtrar:</span>
+<button class="px-2.5 py-1 rounded bg-white font-medium text-slate-800 shadow-xs" onclick="filterCalendar('all', this)" type="button">Todos</button>
+<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium" onclick="filterCalendar('copasst', this)" type="button">COPASST</button>
+<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium" onclick="filterCalendar('capacitacion', this)" type="button">Capacitaciones</button>
+</div>
+<!-- Month Selector -->
+<div class="flex items-center gap-1 bg-white border border-slate-200 rounded-lg p-0.5">
+<button aria-label="Mes anterior" class="p-1.5 text-slate-500 hover:text-slate-800 rounded" title="Mes Anterior">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<span class="text-xs font-semibold px-2 text-slate-700">Mayo 2025</span>
+<button aria-label="Mes siguiente" class="p-1.5 text-slate-500 hover:text-slate-800 rounded" title="Mes Siguiente">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="p-4 overflow-x-auto">
+<div class="min-w-[700px]">
+<!-- Day Names Header -->
+<div class="grid grid-cols-7 gap-px mb-2 text-center text-xs font-bold uppercase tracking-wider text-slate-400">
+<div class="py-2">Lun</div>
+<div class="py-2">Mar</div>
+<div class="py-2">Mié</div>
+<div class="py-2">Jue</div>
+<div class="py-2">Vie</div>
+<div class="py-2">Sáb</div>
+<div class="py-2">Dom</div>
+</div>
+<!-- Calendar Days (Simulated 5-week month) -->
+<div class="grid grid-cols-7 gap-2" id="calendar-days-container"><div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div><div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div><div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">1</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">2</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">3</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">4</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">5</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            <div onclick="showDayEvent(5, 'Inspección Extintores', 'Inspección')" class="mt-1 p-1 rounded bg-purple-600 text-white text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="Inspección Extintores">
+              Inspección Extintores
+            </div>
+          
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">6</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">7</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">8</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">9</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">10</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">11</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">12</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            <div onclick="showDayEvent(12, 'Charla Prevención Ruido', 'Capacitación')" class="mt-1 p-1 rounded bg-amber-500 text-white text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="Charla Prevención Ruido">
+              Charla Prevención Ruido
+            </div>
+          
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">13</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border-2 border-teal-600 bg-teal-50/40 p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-white font-bold bg-teal-600 w-5 h-5 rounded-full flex items-center justify-center">14</span>
+              <span class="text-[9px] font-bold text-teal-800 uppercase">Hoy</span>
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">15</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">16</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            <div onclick="showDayEvent(16, 'Taller Manejo Fuego', 'Capacitación')" class="mt-1 p-1 rounded bg-amber-500 text-white text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="Taller Manejo Fuego">
+              Taller Manejo Fuego
+            </div>
+          
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">17</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">18</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">19</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">20</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">21</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">22</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            <div onclick="showDayEvent(22, 'Reunión Ordinaria COPASST', 'COPASST')" class="mt-1 p-1 rounded bg-brand-600 text-white text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="Reunión Ordinaria COPASST">
+              Reunión Ordinaria COPASST
+            </div>
+          
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">23</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">24</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">25</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">26</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">27</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            <div onclick="showDayEvent(27, 'Trabajo en Alturas', 'Capacitación')" class="mt-1 p-1 rounded bg-amber-500 text-white text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="Trabajo en Alturas">
+              Trabajo en Alturas
+            </div>
+          
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">28</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">29</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">30</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        
+          <div class="h-28 rounded-lg border border-slate-200 bg-white p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-600">31</span>
+              
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+<!-- Calendar Legend -->
+<div class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center gap-4 text-xs">
+<span class="text-slate-500 font-medium">Convenciones:</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span> Reunión COPASST</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Capacitación / Taller</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span> Inspección de Seguridad</span>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- VIEW: EMPLEADOS [ADMIN]                   -->
+<!-- ========================================== -->
+<section class="hidden space-y-6" data-purpose="view-empleados" id="view-empleados">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-xl font-bold text-slate-800">Directorio de Empleados</h2>
+<p class="text-xs text-slate-500">Gestión sociodemográfica, salud ocupacional y afiliaciones</p>
+</div>
+<div class="flex items-center gap-3">
+<input class="text-xs rounded-lg border-slate-300 focus:border-brand-500 focus:ring-brand-500 w-64" id="employee-search" oninput="filterEmployeeTable(this.value)" placeholder="Buscar por nombre, cédula o cargo..." type="text">
+<span class="px-3 py-1.5 bg-brand-50 text-brand-700 font-semibold text-xs rounded-lg border border-brand-200">148 Activos</span>
+</div>
+</div>
+<!-- Split-view Grid: Left List + Right Extended Details (As in Image 4) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left: Table of Employees (5 cols) -->
+<div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden flex flex-col h-[680px]">
+<div class="p-3.5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-600">Lista del Personal</span>
+<span class="text-[11px] text-slate-500">Selecciona para ver ficha</span>
+</div>
+<div class="flex-1 overflow-y-auto divide-y divide-slate-100" id="employee-list-container">
+        <div onclick="selectEmployee(1)" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition-colors bg-slate-50 border-l-4 border-brand-600">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">
+              JC
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-800">Juan Carlos Pérez</p>
+              <p class="text-[11px] text-slate-500">Operario de Planta • Producción</p>
+            </div>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">Activo</span>
+        </div>
+      
+        <div onclick="selectEmployee(2)" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition-colors ">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">
+              ES
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-800">Elena Salazar M.</p>
+              <p class="text-[11px] text-slate-500">Líder de Almacén • Logística</p>
+            </div>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">Activo</span>
+        </div>
+      
+        <div onclick="selectEmployee(3)" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition-colors ">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">
+              AF
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-800">Andrés Felipe Castro</p>
+              <p class="text-[11px] text-slate-500">Técnico de Mantenimiento • Operaciones</p>
+            </div>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">Activo</span>
+        </div>
+      
+        <div onclick="selectEmployee(4)" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition-colors ">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">
+              DM
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-800">Diana Marcela Torres</p>
+              <p class="text-[11px] text-slate-500">Auxiliar Administrativa • Talento Humano</p>
+            </div>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">Activo</span>
+        </div>
+      
+        <div onclick="selectEmployee(5)" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition-colors ">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">
+              RC
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-800">Roberto Camargo</p>
+              <p class="text-[11px] text-slate-500">Supervisor de Turno • Producción</p>
+            </div>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">Activo</span>
+        </div>
+      </div>
+</div>
+<!-- Right: Extended Detail Panel according to Image 4 (7 cols) -->
+<div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-xs p-6 flex flex-col justify-between" id="employee-detail-panel">
+<!-- Selected Employee Header -->
+<div>
+<div class="flex items-start justify-between border-b border-slate-100 pb-4 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-14 h-14 rounded-xl bg-teal-100 text-teal-800 font-bold text-lg flex items-center justify-center border border-teal-200" id="emp-detail-avatar">
+                      JP
+                    </div>
+<div>
+<h3 class="text-lg font-bold text-slate-800" id="emp-detail-name">Juan Carlos Pérez</h3>
+<p class="text-xs text-slate-500" id="emp-detail-role">Operario de Planta • C.C. 1.020.445.890</p>
+<span class="badge-status bg-emerald-100 text-emerald-800 mt-1">Activo Laboralmente</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xs text-slate-400 block">Sede</span>
+<span class="text-xs font-semibold text-slate-700">Planta Principal - Bogotá</span>
+</div>
+</div>
+<!-- Structured Categories according to Image 4 -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Box 1: Datos Básicos / Sociodemográfico -->
+<div class="border border-slate-200 rounded-lg p-3.5 bg-slate-50/50 hover:border-brand-500 transition-colors">
+<h4 class="text-xs font-bold uppercase text-brand-800 flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-brand-600"></span> Datos Básicos / Sociodemográfico
+                    </h4>
+<div class="space-y-1 text-xs text-slate-600" id="emp-detail-socio">
+<p><strong class="text-slate-700">Edad / Género:</strong> 34 años / Masculino</p>
+<p><strong class="text-slate-700">Escolaridad:</strong> Técnico Industrial</p>
+<p><strong class="text-slate-700">Estrato / Estado Civil:</strong> Estrato 3 / Casado (2 hijos)</p>
+<p><strong class="text-slate-700">Contacto Emergencia:</strong> Esposa: 310 998 8776</p>
+</div>
+</div>
+<!-- Box 2: Datos Salud -->
+<div class="border border-slate-200 rounded-lg p-3.5 bg-slate-50/50 hover:border-brand-500 transition-colors">
+<h4 class="text-xs font-bold uppercase text-brand-800 flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-brand-600"></span> Datos Salud Ocupacional
+                    </h4>
+<div class="space-y-1 text-xs text-slate-600">
+<p><strong class="text-slate-700">Examen Periódico:</strong> Vigente (Nov 2024)</p>
+<p><strong class="text-slate-700">Concepto Aptitud:</strong> Apto sin restricciones</p>
+<p><strong class="text-slate-700">Recomendaciones:</strong> Pausas visuales y lumbares</p>
+<p><strong class="text-slate-700">Alergias:</strong> Penicilina / Sin asma</p>
+</div>
+</div>
+<!-- Box 3: Contrato / Modalidad -->
+<div class="border border-slate-200 rounded-lg p-3.5 bg-slate-50/50 hover:border-brand-500 transition-colors">
+<h4 class="text-xs font-bold uppercase text-brand-800 flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-brand-600"></span> Contrato / Modalidad
+                    </h4>
+<div class="space-y-1 text-xs text-slate-600">
+<p><strong class="text-slate-700">Tipo de Contrato:</strong> Término Indefinido</p>
+<p><strong class="text-slate-700">Modalidad:</strong> Presencial (Turno Rotativo)</p>
+<p><strong class="text-slate-700">Fecha Ingreso:</strong> 15-Ene-2021 (4 años)</p>
+<p><strong class="text-slate-700">Centro de Costos:</strong> Operaciones Planta</p>
+</div>
+</div>
+<!-- Box 4: ARL -->
+<div class="border border-slate-200 rounded-lg p-3.5 bg-slate-50/50 hover:border-brand-500 transition-colors">
+<h4 class="text-xs font-bold uppercase text-brand-800 flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-brand-600"></span> Afiliación ARL
+                    </h4>
+<div class="space-y-1 text-xs text-slate-600">
+<p><strong class="text-slate-700">Entidad Administradora:</strong> Seguros SURA</p>
+<p><strong class="text-slate-700">Clase de Riesgo:</strong> Clase IV (Riesgo Alto)</p>
+<p><strong class="text-slate-700">Cód. Actividad:</strong> 2919 (Fabricación Maquinaria)</p>
+<p><strong class="text-slate-700">EPS:</strong> Sanitas Contributivo</p>
+</div>
+</div>
+<!-- Box 5: Capacitaciones -->
+<div class="border border-slate-200 rounded-lg p-3.5 bg-slate-50/50 hover:border-brand-500 transition-colors">
+<h4 class="text-xs font-bold uppercase text-brand-800 flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-brand-600"></span> Capacitaciones SG-SST
+                    </h4>
+<div class="space-y-1 text-xs text-slate-600">
+<p><strong class="text-slate-700">Trabajo en Alturas:</strong> Nivel Avanzado (Vigente 2025)</p>
+<p><strong class="text-slate-700">Brigada de Emergencia:</strong> Primeros Auxilios (8h)</p>
+<p><strong class="text-slate-700">Riesgo Mecánico:</strong> Certificado Ene-2025</p>
+</div>
+</div>
+<!-- Box 6: Datos Psicosocial -->
+<div class="border border-slate-200 rounded-lg p-3.5 bg-slate-50/50 hover:border-brand-500 transition-colors">
+<h4 class="text-xs font-bold uppercase text-brand-800 flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-brand-600"></span> Batería Riesgo Psicosocial
+                    </h4>
+<div class="space-y-1 text-xs text-slate-600">
+<p><strong class="text-slate-700">Fecha Aplicación:</strong> Octubre 2024</p>
+<p><strong class="text-slate-700">Nivel de Riesgo Intralaboral:</strong> Bajo</p>
+<p><strong class="text-slate-700">Nivel Extralaboral:</strong> Medio (Desplazamientos)</p>
+<p><strong class="text-slate-700">Seguimiento:</strong> Programado Oct-2025</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action button bar -->
+<div class="pt-4 mt-4 border-t border-slate-200 flex justify-end gap-3">
+<button class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">Descargar Ficha Completa PDF</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700">Editar Datos de SST</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- VIEW: REUNIONES COPASST [ADMIN]            -->
+<!-- ========================================== -->
+<section class="hidden space-y-6" data-purpose="view-reuniones" id="view-reuniones">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-xl font-bold text-slate-800">Comité Paritario de SST (COPASST)</h2>
+<p class="text-xs text-slate-500">Convocatoria, actas y seguimiento de acuerdos periódicos</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-2 bg-brand-600 text-white font-semibold text-xs rounded-lg hover:bg-brand-700 flex items-center gap-1.5 shadow-xs" onclick="openModal('modal-agendar-reunion')">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Agendar reunión
+              </button>
+<button class="px-3.5 py-2 bg-white border border-slate-300 text-slate-700 font-semibold text-xs rounded-lg hover:bg-slate-50" onclick="alert('Selecciona una reunión programada para aplazarla con notificación por correo.')">
+                Aplazar reunión
+              </button>
+<button class="px-3.5 py-2 bg-rose-50 border border-rose-200 text-rose-700 font-semibold text-xs rounded-lg hover:bg-rose-100" onclick="alert('Se abrirá confirmación para anular convocatoria con justificación legal.')">
+                Cancelar reunión
+              </button>
+</div>
+</div>
+<!-- Structured Dashboard Layout as in Image 8 -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left: Main Meetings Card & Selector (8 cols) -->
+<div class="lg:col-span-8 space-y-4">
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs p-5">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">Sesión Seleccionada: Ordinaria Mensual Mayo</h3>
+<span class="badge-status bg-teal-100 text-teal-800">Convocatoria Activa</span>
+</div>
+<!-- Structured Bottom Details from Image 8: Asistentes, Fechas, Tema, Resumen -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+<div class="bg-slate-50 rounded-lg p-3.5 border border-slate-200">
+<h4 class="text-xs font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                      Fechas y Horario Pactado
+                    </h4>
+<ul class="text-xs text-slate-600 space-y-1">
+<li><strong>Fecha programada:</strong> Jueves, 22 de Mayo 2025</li>
+<li><strong>Horario:</strong> 09:00 AM - 11:00 AM (2 Horas)</li>
+<li><strong>Modalidad / Lugar:</strong> Híbrida (Sala de Juntas Piso 2 / Enlace Teams)</li>
+</ul>
+</div>
+<div class="bg-slate-50 rounded-lg p-3.5 border border-slate-200">
+<h4 class="text-xs font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                      Tema Principal y Orden del Día
+                    </h4>
+<p class="text-xs text-slate-600 leading-relaxed">
+                      1. Verificación del quórum.<br>
+                      2. Revisión de investigación del incidente en bodega de empaque.<br>
+                      3. Estado del cronograma de simulacro de evacuación nacional.<br>
+                      4. Proposiciones y varios.
+                    </p>
+</div>
+</div>
+<!-- Asistentes & Quórum -->
+<div class="mt-4 border-t border-slate-100 pt-4">
+<h4 class="text-xs font-bold text-slate-700 mb-2 flex items-center justify-between">
+<span>Asistentes Convocados (Quórum Reglamentario COPASST)</span>
+<span class="text-teal-600 text-[11px]">4 de 4 Confirmados</span>
+</h4>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+<div class="p-2 bg-emerald-50/60 border border-emerald-200 rounded flex items-center justify-between">
+<div>
+<p class="font-bold text-emerald-950">Carlos Rodríguez</p>
+<p class="text-[11px] text-emerald-700">Presidente (Rep. Empleador)</p>
+</div>
+<span class="text-emerald-700 font-bold">✓ Confirmado</span>
+</div>
+<div class="p-2 bg-emerald-50/60 border border-emerald-200 rounded flex items-center justify-between">
+<div>
+<p class="font-bold text-emerald-950">Elena Salazar</p>
+<p class="text-[11px] text-emerald-700">Secretaria (Rep. Trabajadores)</p>
+</div>
+<span class="text-emerald-700 font-bold">✓ Confirmada</span>
+</div>
+<div class="p-2 bg-emerald-50/60 border border-emerald-200 rounded flex items-center justify-between">
+<div>
+<p class="font-bold text-emerald-950">Mauricio Morales</p>
+<p class="text-[11px] text-emerald-700">Vocal Principal</p>
+</div>
+<span class="text-emerald-700 font-bold">✓ Confirmado</span>
+</div>
+<div class="p-2 bg-emerald-50/60 border border-emerald-200 rounded flex items-center justify-between">
+<div>
+<p class="font-bold text-emerald-950">Claudia Restrepo</p>
+<p class="text-[11px] text-emerald-700">Vocal Suplente</p>
+</div>
+<span class="text-emerald-700 font-bold">✓ Confirmada</span>
+</div>
+</div>
+</div>
+<!-- Resumen y Compromisos Anteriores -->
+<div class="mt-4 bg-amber-50/60 border border-amber-200 rounded-lg p-3 text-xs">
+<span class="font-bold text-amber-900 block mb-1">Resumen de compromisos pendientes de la sesión anterior:</span>
+<p class="text-amber-800">Instalación de cinta antideslizante en escaleras de acceso a mezzanine (Responsable: Mantenimiento - Vence: 20-Mayo). Estado: Cumplido al 100%.</p>
+</div>
+</div>
+</div>
+<!-- Right: Mini-calendar & Historical Meeting List (4 cols) -->
+<div class="lg:col-span-4 space-y-4">
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4">
+<h4 class="text-xs font-bold text-slate-700 uppercase mb-3">Historial de Reuniones 2025</h4>
+<div class="space-y-2">
+<div class="p-2.5 rounded-lg border-2 border-brand-500 bg-brand-50/30 flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-slate-800">Ordinaria Mayo 2025</p>
+<p class="text-[11px] text-slate-500">22 Mayo, 2025 • Programada</p>
+</div>
+<span class="badge-status bg-teal-100 text-teal-800">Próxima</span>
+</div>
+<div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-slate-800">Ordinaria Abril 2025</p>
+<p class="text-[11px] text-slate-500">24 Abril, 2025 • Acta #004</p>
+</div>
+<span class="badge-status bg-emerald-100 text-emerald-800">Aprobada</span>
+</div>
+<div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-slate-800">Extraordinaria Incidente #2</p>
+<p class="text-[11px] text-slate-500">10 Abril, 2025 • Acta #003</p>
+</div>
+<span class="badge-status bg-emerald-100 text-emerald-800">Aprobada</span>
+</div>
+<div class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between">
+<div>
+<p class="text-xs font-bold text-slate-800">Ordinaria Marzo 2025</p>
+<p class="text-[11px] text-slate-500">20 Marzo, 2025 • Acta #002</p>
+</div>
+<span class="badge-status bg-emerald-100 text-emerald-800">Aprobada</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- VIEW: ACTAS [ADMIN & EMPLEADO]             -->
+<!-- ========================================== -->
+<section class="hidden space-y-6" data-purpose="view-actas" id="view-actas">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-xl font-bold text-slate-800">Repositorio Oficial de Actas SST</h2>
+<p class="text-xs text-slate-500">Documentación firmada, evidencia de comités y transcripciones</p>
+</div>
+<!-- Search bar -->
+<input class="text-xs rounded-lg border-slate-300 focus:border-brand-500 focus:ring-brand-500 w-64" placeholder="Buscar actas por código o tema..." type="text">
+</div>
+<!-- Layout according to Image 7: Left list, Center display, Right upload -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left: Actas List with Badges (Aprobada, En proceso) - 4 cols -->
+<div class="lg:col-span-4 space-y-3">
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Registro de Actas</h3>
+<div class="space-y-2.5" id="actas-list-container">
+<!-- Acta 1 -->
+<div class="cursor-pointer p-3 rounded-lg border-2 border-brand-500 bg-brand-50/20 transition-all" onclick="selectActa(1)">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-800">Acta 001 - Ordinaria COPASST</span>
+<span class="badge-status bg-emerald-100 text-emerald-800">Aprobada</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1">Fecha: 15-Ene-2025 • 4 Asistentes</p>
+</div>
+<!-- Acta 2 -->
+<div class="cursor-pointer p-3 rounded-lg border border-slate-200 hover:border-slate-300 bg-white transition-all" onclick="selectActa(2)">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-800">Acta 002 - Comité Convivencia</span>
+<span class="badge-status bg-amber-100 text-amber-800">En proceso</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1">Fecha: 28-Feb-2025 • Pendiente firma vocal</p>
+</div>
+<!-- Acta 3 -->
+<div class="cursor-pointer p-3 rounded-lg border border-slate-200 hover:border-slate-300 bg-white transition-all" onclick="selectActa(3)">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-800">Acta 003 - Revisión Dirección</span>
+<span class="badge-status bg-emerald-100 text-emerald-800">Aprobada</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1">Fecha: 25-Mar-2025 • Gerencia General</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Center: Display Acta en Pantalla - 5 cols (or 8 cols if employee) -->
+<div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-xs p-6 flex flex-col justify-between" id="acta-viewer-column">
+<div>
+<div class="border-b-2 border-slate-800 pb-3 flex justify-between items-center mb-4">
+<div>
+<h3 class="font-bold text-sm text-slate-900" id="viewer-title">ACTA N° 001 - COPASST</h3>
+<p class="text-[11px] text-slate-500">Sistema de Gestión de Seguridad y Salud en el Trabajo</p>
+</div>
+<span class="badge-status bg-emerald-100 text-emerald-800 font-bold" id="viewer-status-badge">Aprobada</span>
+</div>
+<div class="text-xs text-slate-700 space-y-3 font-mono leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-100 max-h-96 overflow-y-auto">
+<p><strong>LUGAR:</strong> Sede Principal - Bogotá D.C.<br><strong>HORA INICIO:</strong> 09:00 AM | <strong>HORA FIN:</strong> 11:00 AM</p>
+<p><strong>ORDEN DEL DÍA:</strong><br>
+                  1. Instalación del comité período 2025.<br>
+                  2. Asignación formal de responsabilidades.<br>
+                  3. Aprobación del Plan Anual de Trabajo SG-SST.</p>
+<p><strong>DESARROLLO Y ACUERDOS:</strong><br>
+                  Se verifica quórum con 100% de delegados. Se presenta el Plan Anual con una asignación presupuestal aprobada por Gerencia. Se acuerda realizar inspección locativa trimestral a bodegas.</p>
+<p><strong>FIRMAS DIGITALES REGISTRADAS:</strong><br>
+                  - Carlos Rodríguez (Presidente COPASST) [Firmado 15/01/2025]<br>
+                  - Elena Salazar (Secretaria COPASST) [Firmado 15/01/2025]</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-slate-200 flex justify-between items-center">
+<span class="text-[11px] text-slate-400">Hash SHA-256 verificado</span>
+<button class="px-3 py-1.5 bg-slate-800 text-white text-xs font-semibold rounded hover:bg-slate-700 flex items-center gap-1.5">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Descargar Acta Oficial
+                </button>
+</div>
+</div>
+<!-- Right: "Crear nueva acta (Audio o Scripts)" as in Image 7 (Only Admin) - 3 cols -->
+<div class="lg:col-span-3 bg-white rounded-xl border border-slate-200 shadow-xs p-5 flex flex-col justify-between" id="acta-upload-panel">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Crear nueva acta</h3>
+<p class="text-xs text-slate-500 mb-4">(Por favor suba la inf.)</p>
+<!-- Drag & drop box as shown with up arrow in Image 7 -->
+<div class="border-2 border-dashed border-brand-300 rounded-xl p-5 text-center bg-teal-50/40 hover:bg-teal-50 transition-colors cursor-pointer" onclick="document.getElementById('acta-file-input').click()">
+<div class="w-12 h-12 mx-auto rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-2">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<p class="text-xs font-semibold text-slate-700">Audio o Scripts</p>
+<p class="text-[11px] text-slate-500 mt-1">Arrastra aquí grabaciones MP3, M4A o transcripciones de texto</p>
+<input accept=".mp3,.wav,.m4a,.txt,.docx" class="hidden" id="acta-file-input" onchange="simulateAudioUpload(this)" type="file">
+</div>
+<div class="mt-4 hidden p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-800" id="upload-status-box">
+                  Archivo cargado correctamente. Listo para procesar.
+                </div>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100">
+<button class="w-full py-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2" onclick="simulateTranscription()">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Transcribir y generar borrador
+                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- VIEW: CAPACITACIONES [ADMIN]               -->
+<!-- ========================================== -->
+<section class="hidden space-y-6" data-purpose="view-capacitaciones" id="view-capacitaciones">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-xl font-bold text-slate-800">Plan Institucional de Capacitaciones</h2>
+<p class="text-xs text-slate-500">Cronograma formativo en prevención y estándares de riesgos laborales</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-2 bg-brand-600 text-white font-semibold text-xs rounded-lg hover:bg-brand-700 flex items-center gap-1.5 shadow-xs" onclick="openModal('modal-agendar-capacitacion')">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Agendar capacitación
+              </button>
+<button class="px-3.5 py-2 bg-rose-50 border border-rose-200 text-rose-700 font-semibold text-xs rounded-lg hover:bg-rose-100" onclick="alert('Permite anular una sesión del calendario notificando a los inscritos.')">
+                Cancelar capacitación
+              </button>
+</div>
+</div>
+<!-- Structured Dashboard Layout as in Image 6 -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left: Card Capacitaciones + Datos Capacitación (8 cols) -->
+<div class="lg:col-span-8 space-y-4">
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs p-5">
+<div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+<div>
+<span class="badge-status bg-amber-100 text-amber-800 text-[10px] uppercase font-bold">Módulo Obligatorio</span>
+<h3 class="text-base font-bold text-slate-800 mt-1">Manejo Seguro de Extintores &amp; Control de Incendios</h3>
+</div>
+<span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md border border-brand-200">Próxima Sesión</span>
+</div>
+<!-- Datos Capacitación according to bottom of Image 6 (Asistentes, Fecha, tema, Encargado) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-slate-50 rounded-lg p-3.5 border border-slate-200">
+<h4 class="text-xs font-bold text-slate-700 mb-2">Tema y Contenido Técnico</h4>
+<p class="text-xs text-slate-600 leading-relaxed">
+                      Química del fuego, clases de fuego (A, B, C, K), inspección preoperacional de extintores portátiles de polvo químico seco y CO2, y práctica de sofocación en área controlada.
+                    </p>
+</div>
+<div class="bg-slate-50 rounded-lg p-3.5 border border-slate-200">
+<h4 class="text-xs font-bold text-slate-700 mb-2">Fecha y Encargado</h4>
+<ul class="text-xs text-slate-600 space-y-1.5">
+<li><strong>Fecha pactada:</strong> Viernes, 16 de Mayo 2025</li>
+<li><strong>Horario:</strong> 02:00 PM - 04:30 PM (2.5 Horas)</li>
+<li><strong>Encargado:</strong> Ing. Diego Marín (Especialista ARL SURA)</li>
+<li><strong>Lugar:</strong> Patio de maniobras - Sede Industrial</li>
+</ul>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100">
+<h4 class="text-xs font-bold text-slate-700 mb-2 flex items-center justify-between">
+<span>Asistentes Convocados (Personal Operativo &amp; Brigadistas)</span>
+<span class="text-slate-500 font-normal">24 Empleados Inscritos</span>
+</h4>
+<div class="w-full bg-slate-100 rounded-full h-2 mb-2">
+<div class="bg-brand-600 h-2 rounded-full" style="width: 80%"></div>
+</div>
+<div class="flex justify-between text-[11px] text-slate-500">
+<span>80% del aforo confirmado</span>
+<span>Meta de eficacia: &gt;= 85%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Mini calendar / Schedule (4 cols) as in Image 6 -->
+<div class="lg:col-span-4 space-y-4">
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4">
+<h4 class="text-xs font-bold text-slate-700 uppercase mb-3">Cronograma de Capacitaciones</h4>
+<div class="space-y-2.5">
+<div class="p-3 rounded-lg border-2 border-brand-500 bg-brand-50/30">
+<span class="text-[10px] font-bold text-brand-700">16 MAYO 2025</span>
+<h5 class="text-xs font-bold text-slate-800">Extintores y Fuego</h5>
+<p class="text-[11px] text-slate-500">24 participantes • ARL SURA</p>
+</div>
+<div class="p-3 rounded-lg border border-slate-200 bg-white">
+<span class="text-[10px] font-bold text-slate-400">27 MAYO 2025</span>
+<h5 class="text-xs font-bold text-slate-800">Trabajo Seguro en Alturas</h5>
+<p class="text-[11px] text-slate-500">12 participantes • Centro de Entrenamiento</p>
+</div>
+<div class="p-3 rounded-lg border border-slate-200 bg-white">
+<span class="text-[10px] font-bold text-slate-400">05 JUNIO 2025</span>
+<h5 class="text-xs font-bold text-slate-800">Pausas Activas &amp; Ergonomía</h5>
+<p class="text-[11px] text-slate-500">Todo el personal administrativo</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- VIEW: AUTORREPORTE [ADMIN & EMPLEADO]      -->
+<!-- ========================================== -->
+<section class="hidden space-y-6" data-purpose="view-autorreporte" id="view-autorreporte">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-xl font-bold text-slate-800" id="autorreporte-view-title">Autorreporte de Condiciones de Trabajo y Salud</h2>
+<p class="text-xs text-slate-500" id="autorreporte-view-subtitle">Mecanismo participativo legal (Decreto 1072 de 2015)</p>
+</div>
+<!-- Prominent Button: Generar Autorreporte -->
+<button class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl shadow-md flex items-center gap-2 transition-all transform active:scale-95" onclick="openReportModal()">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Generar Autorreporte</span>
+</button>
+</div>
+<!-- Explanatory States Box as detailed in Image 5 & 1 -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 mb-2 flex items-center gap-2">
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              Guía de Estados del Reporte
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+<div class="p-2.5 rounded-lg bg-blue-50 border border-blue-200">
+<span class="badge-status bg-blue-100 text-blue-800 mb-1">Abierto / Radicado</span>
+<p class="text-[11px] text-blue-900 mt-1">Reporte nuevo recién ingresado al sistema.</p>
+</div>
+<div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
+<span class="badge-status bg-amber-100 text-amber-800 mb-1">En revisión</span>
+<p class="text-[11px] text-amber-900 mt-1">El área SST inspecciona la condición o contacta al trabajador.</p>
+</div>
+<div class="p-2.5 rounded-lg bg-purple-50 border border-purple-200">
+<span class="badge-status bg-purple-100 text-purple-800 mb-1">En plan de acción</span>
+<p class="text-[11px] text-purple-900 mt-1">Se ejecutan medidas preventivas o correctivas.</p>
+</div>
+<div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200">
+<span class="badge-status bg-emerald-100 text-emerald-800 mb-1">Cerrado / Resuelto</span>
+<p class="text-[11px] text-emerald-900 mt-1">Riesgo controlado o situación de salud gestionada.</p>
+</div>
+<div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200">
+<span class="badge-status bg-rose-100 text-rose-800 mb-1">Aprobado / Rechazado</span>
+<p class="text-[11px] text-rose-900 mt-1">Exclusivo incapacidades. Justificación visible.</p>
+</div>
+</div>
+</div>
+<!-- Autorreportes Records Table -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+<div class="p-4 border-b border-slate-200 flex flex-col sm:flex-row justify-between sm:items-center gap-3 bg-slate-50">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-700" id="autorreportes-table-heading">Lista de Autorreportes de Todos los Empleados</h3>
+<div class="flex items-center gap-2">
+<select class="text-xs rounded-lg border-slate-300 py-1.5 pr-8 focus:border-brand-500" id="filter-report-status" onchange="filterReportsByStatus(this.value)">
+<option value="all">Todos los Estados</option>
+<option value="Abierto">Abierto / Radicado</option>
+<option value="En revisión">En revisión</option>
+<option value="En plan de acción">En plan de acción</option>
+<option value="Cerrado">Cerrado / Resuelto</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="reports-table">
+<thead>
+<tr class="border-b border-slate-200 bg-slate-100/60 text-[11px] font-bold uppercase text-slate-500">
+<th class="p-3">Radicado</th>
+<th class="p-3">Trabajador</th>
+<th class="p-3">Categoría</th>
+<th class="p-3">Localización</th>
+<th class="p-3">Fecha y Hora</th>
+<th class="p-3">Estado</th>
+<th class="p-3 text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-xs" id="reports-tbody">
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="p-3 font-mono font-bold text-slate-800">AR-104</td>
+            <td class="p-3 font-medium text-slate-800">Juan Carlos Pérez</td>
+            <td class="p-3 text-slate-600">Condición Insegura</td>
+            <td class="p-3 text-slate-500">Bodega Central - Pasillo 3</td>
+            <td class="p-3 text-slate-500">14/05/2025 08:30 AM</td>
+            <td class="p-3">
+              <span class="badge-status bg-blue-100 text-blue-800">Abierto</span>
+            </td>
+            <td class="p-3 text-right">
+              <button onclick="alert('Detalle completo del caso AR-104:\nReportante: Juan Carlos Pérez\nLocalización: Bodega Central - Pasillo 3\nEstado actual: Abierto\nAcción de SST: Inspección programada.')" class="text-xs text-brand-600 hover:text-brand-800 font-semibold">Ver Ficha</button>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="p-3 font-mono font-bold text-slate-800">AR-103</td>
+            <td class="p-3 font-medium text-slate-800">Elena Salazar M.</td>
+            <td class="p-3 text-slate-600">Acto Inseguro</td>
+            <td class="p-3 text-slate-500">Muelles de Carga</td>
+            <td class="p-3 text-slate-500">12/05/2025 14:15 PM</td>
+            <td class="p-3">
+              <span class="badge-status bg-amber-100 text-amber-800">En revisión</span>
+            </td>
+            <td class="p-3 text-right">
+              <button onclick="alert('Detalle completo del caso AR-103:\nReportante: Elena Salazar M.\nLocalización: Muelles de Carga\nEstado actual: En revisión\nAcción de SST: Inspección programada.')" class="text-xs text-brand-600 hover:text-brand-800 font-semibold">Ver Ficha</button>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="p-3 font-mono font-bold text-slate-800">AR-102</td>
+            <td class="p-3 font-medium text-slate-800">María Gómez</td>
+            <td class="p-3 text-slate-600">Incapacidad Médica (3 días)</td>
+            <td class="p-3 text-slate-500">Oficina Central</td>
+            <td class="p-3 text-slate-500">10/05/2025 09:00 AM</td>
+            <td class="p-3">
+              <span class="badge-status bg-emerald-100 text-emerald-800">Aprobado</span>
+            </td>
+            <td class="p-3 text-right">
+              <button onclick="alert('Detalle completo del caso AR-102:\nReportante: María Gómez\nLocalización: Oficina Central\nEstado actual: Aprobado\nAcción de SST: Inspección programada.')" class="text-xs text-brand-600 hover:text-brand-800 font-semibold">Ver Ficha</button>
+            </td>
+          </tr>
+        
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="p-3 font-mono font-bold text-slate-800">AR-101</td>
+            <td class="p-3 font-medium text-slate-800">Andrés Felipe Castro</td>
+            <td class="p-3 text-slate-600">Incidente Mecánico</td>
+            <td class="p-3 text-slate-500">Taller Mecánico</td>
+            <td class="p-3 text-slate-500">05/05/2025 11:20 AM</td>
+            <td class="p-3">
+              <span class="badge-status bg-emerald-100 text-emerald-800">Cerrado</span>
+            </td>
+            <td class="p-3 text-right">
+              <button onclick="alert('Detalle completo del caso AR-101:\nReportante: Andrés Felipe Castro\nLocalización: Taller Mecánico\nEstado actual: Cerrado\nAcción de SST: Inspección programada.')" class="text-xs text-brand-600 hover:text-brand-800 font-semibold">Ver Ficha</button>
+            </td>
+          </tr>
+        </tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<!-- END: Scrollable Dynamic Main Container -->
+</div>
+<!-- END: Main Content Area -->
+</div>
+<!-- END: Application Shell -->
+<!-- ================================================================= -->
+<!-- BEGIN: MODAL - GENERAR AUTORREPORTE (Image 5 & Image 1 specs)     -->
+<!-- ================================================================= -->
+<div aria-labelledby="modal-report-title" aria-modal="true" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 overflow-y-auto" id="modal-autorreporte" role="dialog">
+<div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden my-8">
+<!-- Modal Header -->
+<div class="p-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+<div>
+<h3 class="text-base font-bold text-slate-800" id="modal-report-title">Radicar Nuevo Autorreporte SG-SST</h3>
+<p class="text-xs text-slate-500">Diligencie la información verídica para gestión inmediata de SST</p>
+</div>
+<button class="text-slate-400 hover:text-slate-700 p-1 rounded-lg" onclick="closeReportModal()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Modal Form Body -->
+<form class="p-6 space-y-4" id="form-autorreporte" onsubmit="handleFormReportSubmit(event)">
+<!-- Tab Switcher: [ Riesgos y accidentes ] vs [ Incapacidades ] -->
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Seleccione Tipo de Reporte *</label>
+<div class="grid grid-cols-2 gap-3">
+<label class="flex items-center justify-center gap-2 p-3 border-2 border-brand-500 bg-brand-50/40 rounded-xl cursor-pointer font-semibold text-xs text-brand-900 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+<input checked="" class="text-brand-600 focus:ring-brand-500" name="report_category" onchange="toggleReportTypeFields('riesgos')" type="radio" value="riesgos">
+<span>⚠️ Riesgos y Accidentes</span>
+</label>
+<label class="flex items-center justify-center gap-2 p-3 border border-slate-200 rounded-xl cursor-pointer font-semibold text-xs text-slate-700 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+<input class="text-brand-600 focus:ring-brand-500" name="report_category" onchange="toggleReportTypeFields('incapacidades')" type="radio" value="incapacidades">
+<span>🏥 Incapacidades Médicas</span>
+</label>
+</div>
+</div>
+<!-- Conditional Fields: Riesgos y Accidentes -->
+<div class="space-y-4" id="fields-riesgos">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="tipo-riesgo-select">Clasificación del Evento *</label>
+<select class="w-full text-xs rounded-lg border-slate-300 focus:border-brand-500 focus:ring-brand-500" id="tipo-riesgo-select">
+<option value="Condición Insegura">Condición Insegura (Peligro locativo/físico)</option>
+<option value="Acto Inseguro">Acto Inseguro</option>
+<option value="Casi-accidente (Incidente)">Casi-accidente / Incidente sin lesión</option>
+<option value="Accidente de Trabajo Leve">Accidente de Trabajo Leve</option>
+<option value="Accidente de Trabajo Grave">Accidente de Trabajo Grave</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="localizacion-input">Localización Exacta *</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-brand-500" id="localizacion-input" placeholder="Ej: Planta 2, Línea de envasado, Pasillo 4" required="" type="text">
+</div>
+</div>
+</div>
+<!-- Conditional Fields: Incapacidades -->
+<div class="space-y-4 hidden" id="fields-incapacidades">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="origen-incapacidad-select">Origen de la Incapacidad *</label>
+<select class="w-full text-xs rounded-lg border-slate-300" id="origen-incapacidad-select">
+<option value="Enfermedad General">Enfermedad General (EPS)</option>
+<option value="Accidente de Trabajo">Accidente de Trabajo (ARL)</option>
+<option value="Enfermedad Laboral">Enfermedad Laboral Calificada</option>
+<option value="Licencia Maternidad/Paternidad">Licencia de Maternidad / Paternidad</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="cie10-input">Diagnóstico CIE-10</label>
+<input class="w-full text-xs rounded-lg border-slate-300" id="cie10-input" placeholder="Ej: J00, M54.5" type="text">
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="dias-otorgados-input">Días Otorgados *</label>
+<input class="w-full text-xs rounded-lg border-slate-300" id="dias-otorgados-input" max="180" min="1" placeholder="Ej: 3" type="number">
+</div>
+</div>
+</div>
+<!-- Common Fields: Descripción, Fecha/Hora, Datos del Trabajador -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="fecha-evento-input">Fecha y Hora del Evento / Inicio *</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-brand-500" id="fecha-evento-input" required="" type="datetime-local">
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="trabajador-nombre-input">Datos del Trabajador Reportante *</label>
+<input class="w-full text-xs rounded-lg bg-slate-100 border-slate-300 text-slate-600" id="trabajador-nombre-input" readonly="" type="text" value="Carlos Rodríguez (C.C. 1.019.234.567) - Administrador SST">
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1" for="descripcion-reporte-input">Descripción Detallada *</label>
+<textarea class="w-full text-xs rounded-lg border-slate-300 focus:border-brand-500" id="descripcion-reporte-input" placeholder="Describa de manera clara qué observó, partes corporales afectadas o causas de la condición de peligro..." required="" rows="3"></textarea>
+</div>
+<!-- Evidencia (Foto / Soporte Médico) -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Evidencia Fotográfica o Soporte PDF *</label>
+<div class="border border-dashed border-slate-300 rounded-lg p-3 text-center hover:bg-slate-50 cursor-pointer" onclick="document.getElementById('evidence-file-input').click()">
+<svg class="w-6 h-6 mx-auto text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="text-xs text-brand-700 font-semibold" id="evidence-filename">Haga clic para adjuntar foto o certificado</span>
+<input class="hidden" id="evidence-file-input" onchange="previewEvidenceFile(this)" type="file">
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="pt-3 border-t border-slate-200 flex justify-end gap-3">
+<button class="px-4 py-2 border border-slate-300 text-xs font-semibold rounded-lg text-slate-700 hover:bg-slate-50" onclick="closeReportModal()" type="button">Cancelar</button>
+<button class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs rounded-lg shadow-sm" type="submit">Radicar Reporte</button>
+</div>
+</form>
+</div>
+</div>
+<!-- END: MODAL - GENERAR AUTORREPORTE -->
+<!-- BEGIN: MODAL - AGENDAR REUNION COPASST -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="modal-agendar-reunion">
+<div class="bg-white rounded-xl max-w-md w-full p-5 border border-slate-200 shadow-2xl">
+<h3 class="text-sm font-bold text-slate-800 mb-3">Agendar Convocatoria COPASST</h3>
+<form class="space-y-3 text-xs" onsubmit="event.preventDefault(); closeModal('modal-agendar-reunion'); alert('Reunión agendada y notificaciones enviadas a los miembros del comité.');">
+<div>
+<label class="block font-semibold mb-1">Tipo de Reunión</label>
+<select class="w-full rounded-lg border-slate-300 text-xs"><option>Ordinaria Mensual</option><option>Extraordinaria (Investigación AT)</option></select>
+</div>
+<div>
+<label class="block font-semibold mb-1">Fecha y Hora</label>
+<input class="w-full rounded-lg border-slate-300 text-xs" required="" type="datetime-local">
+</div>
+<div>
+<label class="block font-semibold mb-1">Lugar o Enlace Virtual</label>
+<input class="w-full rounded-lg border-slate-300 text-xs" placeholder="Ej: Sala de juntas o link Teams" required="" type="text">
+</div>
+<div>
+<label class="block font-semibold mb-1">Orden del Día</label>
+<textarea class="w-full rounded-lg border-slate-300 text-xs" placeholder="Temas a tratar..." rows="2"></textarea>
+</div>
+<div class="flex justify-end gap-2 pt-2 border-t">
+<button class="px-3 py-1.5 border rounded" onclick="closeModal('modal-agendar-reunion')" type="button">Cancelar</button>
+<button class="px-3 py-1.5 bg-brand-600 text-white rounded font-semibold" type="submit">Guardar y Convocar</button>
+</div>
+</form>
+</div>
+</div>
+<!-- END: MODAL - AGENDAR REUNION COPASST -->
+<!-- BEGIN: MODAL - AGENDAR CAPACITACION -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="modal-agendar-capacitacion">
+<div class="bg-white rounded-xl max-w-md w-full p-5 border border-slate-200 shadow-2xl">
+<h3 class="text-sm font-bold text-slate-800 mb-3">Agendar Sesión de Capacitación</h3>
+<form class="space-y-3 text-xs" onsubmit="event.preventDefault(); closeModal('modal-agendar-capacitacion'); alert('Capacitación agregada al cronograma del SG-SST.');">
+<div>
+<label class="block font-semibold mb-1">Tema Técnico</label>
+<input class="w-full rounded-lg border-slate-300 text-xs" placeholder="Ej: Manejo de Sustancias Químicas" required="" type="text">
+</div>
+<div>
+<label class="block font-semibold mb-1">Fecha y Horario</label>
+<input class="w-full rounded-lg border-slate-300 text-xs" required="" type="datetime-local">
+</div>
+<div>
+<label class="block font-semibold mb-1">Encargado / Facilitador</label>
+<input class="w-full rounded-lg border-slate-300 text-xs" placeholder="Ej: Especialista ARL / Asesor Externo" required="" type="text">
+</div>
+<div class="flex justify-end gap-2 pt-2 border-t">
+<button class="px-3 py-1.5 border rounded" onclick="closeModal('modal-agendar-capacitacion')" type="button">Cancelar</button>
+<button class="px-3 py-1.5 bg-brand-600 text-white rounded font-semibold" type="submit">Publicar</button>
+</div>
+</form>
+</div>
+</div>
+<!-- END: MODAL - AGENDAR CAPACITACION -->
+<!-- BEGIN: Application State & Routing JavaScript -->
+<script data-purpose="app-logic">
+    // Mock Data Store
+    const state = {
+      currentRole: 'admin', // 'admin' | 'employee'
+      currentView: 'dashboard',
+      users: {
+        admin: {
+          fullName: 'Carlos Rodríguez',
+          greeting: 'Buen día, Carlos Rodríguez (Administrador)',
+          roleLabel: 'Rol activo: Administrador de SST',
+          shortName: 'C. Rodríguez',
+          initials: 'CR',
+          cedula: '1.019.234.567'
+        },
+        employee: {
+          fullName: 'María Gómez',
+          greeting: 'Buen día, María Gómez (Empleado)',
+          roleLabel: 'Rol activo: Empleado / Operario',
+          shortName: 'M. Gómez',
+          initials: 'MG',
+          cedula: '1.032.889.123'
+        }
+      },
+      employees: [
+        { id: 1, name: 'Juan Carlos Pérez', cargo: 'Operario de Planta', cc: '1.020.445.890', area: 'Producción', estado: 'Activo' },
+        { id: 2, name: 'Elena Salazar M.', cargo: 'Líder de Almacén', cc: '52.341.908', area: 'Logística', estado: 'Activo' },
+        { id: 3, name: 'Andrés Felipe Castro', cargo: 'Técnico de Mantenimiento', cc: '80.765.234', area: 'Operaciones', estado: 'Activo' },
+        { id: 4, name: 'Diana Marcela Torres', cargo: 'Auxiliar Administrativa', cc: '1.014.238.901', area: 'Talento Humano', estado: 'Activo' },
+        { id: 5, name: 'Roberto Camargo', cargo: 'Supervisor de Turno', cc: '79.654.112', area: 'Producción', estado: 'Activo' }
+      ],
+      autorreportes: [
+        { id: 'AR-104', trabajador: 'Juan Carlos Pérez', categoria: 'Condición Insegura', localizacion: 'Bodega Central - Pasillo 3', fecha: '14/05/2025 08:30 AM', estado: 'Abierto', tipo: 'riesgo' },
+        { id: 'AR-103', trabajador: 'Elena Salazar M.', categoria: 'Acto Inseguro', localizacion: 'Muelles de Carga', fecha: '12/05/2025 14:15 PM', estado: 'En revisión', tipo: 'riesgo' },
+        { id: 'AR-102', trabajador: 'María Gómez', categoria: 'Incapacidad Médica (3 días)', localizacion: 'Oficina Central', fecha: '10/05/2025 09:00 AM', estado: 'Aprobado', tipo: 'incapacidad' },
+        { id: 'AR-101', trabajador: 'Andrés Felipe Castro', categoria: 'Incidente Mecánico', localizacion: 'Taller Mecánico', fecha: '05/05/2025 11:20 AM', estado: 'Cerrado', tipo: 'riesgo' }
+      ],
+      calendarEvents: [
+        { day: 5, month: 5, title: 'Inspección Extintores', type: 'inspeccion', label: 'Inspección' },
+        { day: 12, month: 5, title: 'Charla Prevención Ruido', type: 'capacitacion', label: 'Capacitación' },
+        { day: 16, month: 5, title: 'Taller Manejo Fuego', type: 'capacitacion', label: 'Capacitación' },
+        { day: 22, month: 5, title: 'Reunión Ordinaria COPASST', type: 'copasst', label: 'COPASST' },
+        { day: 27, month: 5, title: 'Trabajo en Alturas', type: 'capacitacion', label: 'Capacitación' }
+      ]
+    };
+
+    // Role Navigation Maps
+    const navItemsAdmin = [
+      { id: 'dashboard', label: 'Dashboard', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+      { id: 'empleados', label: 'Empleados', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>' },
+      { id: 'reuniones', label: 'Reuniones COPASST', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>' },
+      { id: 'actas', label: 'Actas', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>' },
+      { id: 'capacitaciones', label: 'Capacitaciones', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
+      { id: 'autorreporte', label: 'Autorreporte', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>' }
+    ];
+
+    const navItemsEmployee = [
+      { id: 'dashboard', label: 'Dashboard', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+      { id: 'actas', label: 'Actas (Consulta)', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>' },
+      { id: 'autorreporte', label: 'Mi Autorreporte', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>' }
+    ];
+
+    // Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNavigation();
+      renderCalendarDays();
+      renderEmployeeList();
+      renderAutorreportesTable();
+      updateTopBarProfile();
+
+      // Mobile sidebar trigger
+      document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+        document.getElementById('main-sidebar').classList.toggle('-translate-x-full');
+      });
+    });
+
+    // Switch Role Function
+    function switchRole(newRole) {
+      state.currentRole = newRole;
+      
+      const adminBtn = document.getElementById('role-admin-btn');
+      const employeeBtn = document.getElementById('role-employee-btn');
+      
+      if (newRole === 'admin') {
+        adminBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-md shadow-xs bg-white text-brand-700 transition-colors";
+        adminBtn.setAttribute('aria-pressed', 'true');
+        employeeBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 transition-colors";
+        employeeBtn.setAttribute('aria-pressed', 'false');
+      } else {
+        employeeBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-md shadow-xs bg-white text-brand-700 transition-colors";
+        employeeBtn.setAttribute('aria-pressed', 'true');
+        adminBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 transition-colors";
+        adminBtn.setAttribute('aria-pressed', 'false');
+      }
+
+      updateTopBarProfile();
+      renderNavigation();
+
+      // Adapt views based on role
+      if (newRole === 'employee') {
+        document.getElementById('dashboard-kpis-admin').classList.add('hidden');
+        document.getElementById('dashboard-kpis-employee').classList.remove('hidden');
+        document.getElementById('acta-upload-panel').classList.add('hidden');
+        document.getElementById('acta-viewer-column').className = "lg:col-span-8 bg-white rounded-xl border border-slate-200 shadow-xs p-6 flex flex-col justify-between";
+        document.getElementById('autorreportes-table-heading').innerText = "Lista de Autorreportes DEL EMPLEADO (Historial)";
+        
+        // If on an admin-exclusive view, redirect to dashboard
+        if (state.currentView === 'empleados' || state.currentView === 'reuniones' || state.currentView === 'capacitaciones') {
+          navigateToView('dashboard');
+        }
+      } else {
+        document.getElementById('dashboard-kpis-admin').classList.remove('hidden');
+        document.getElementById('dashboard-kpis-employee').classList.add('hidden');
+        document.getElementById('acta-upload-panel').classList.remove('hidden');
+        document.getElementById('acta-viewer-column').className = "lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-xs p-6 flex flex-col justify-between";
+        document.getElementById('autorreportes-table-heading').innerText = "Lista de Autorreportes de TODOS los Empleados";
+      }
+
+      renderAutorreportesTable();
+    }
+
+    function updateTopBarProfile() {
+      const activeUser = state.users[state.currentRole];
+      document.getElementById('user-greeting').innerText = activeUser.greeting;
+      document.getElementById('user-role-label').innerText = activeUser.roleLabel;
+      document.getElementById('user-avatar').innerText = activeUser.initials;
+      document.getElementById('user-name-short').innerText = activeUser.shortName;
+      document.getElementById('trabajador-nombre-input').value = `${activeUser.fullName} (C.C. ${activeUser.cedula}) - ${state.currentRole === 'admin' ? 'Administrador SST' : 'Operario'}`;
+    }
+
+    function renderNavigation() {
+      const container = document.getElementById('sidebar-nav-container');
+      const items = state.currentRole === 'admin' ? navItemsAdmin : navItemsEmployee;
+      
+      container.innerHTML = items.map(item => {
+        const isActive = state.currentView === item.id;
+        const activeClasses = isActive 
+          ? 'bg-brand-600 text-white font-semibold shadow-xs' 
+          : 'text-slate-300 hover:bg-slate-800 hover:text-white font-medium';
+        return `
+          <button onclick="navigateToView('${item.id}')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-colors ${activeClasses}" aria-current="${isActive ? 'page' : 'false'}">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">${item.icon}</svg>
+            <span>${item.label}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function navigateToView(viewId) {
+      state.currentView = viewId;
+      const views = ['dashboard', 'empleados', 'reuniones', 'actas', 'capacitaciones', 'autorreporte'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) {
+          if (v === viewId) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        }
+      });
+      renderNavigation();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Calendar Generation
+    function renderCalendarDays(filter = 'all') {
+      const container = document.getElementById('calendar-days-container');
+      let html = '';
+      
+      // May 2025 starts on a Thursday (offset: 3 empty days from Monday)
+      for (let i = 0; i < 3; i++) {
+        html += `<div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>`;
+      }
+
+      for (let day = 1; day <= 31; day++) {
+        const event = state.calendarEvents.find(e => e.day === day);
+        let eventBadge = '';
+        
+        if (event && (filter === 'all' || filter === event.type)) {
+          let colorClass = 'bg-brand-600 text-white';
+          if (event.type === 'capacitacion') colorClass = 'bg-amber-500 text-white';
+          if (event.type === 'inspeccion') colorClass = 'bg-purple-600 text-white';
+
+          eventBadge = `
+            <div onclick="showDayEvent(${day}, '${event.title}', '${event.label}')" class="mt-1 p-1 rounded ${colorClass} text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="${event.title}">
+              ${event.title}
+            </div>
+          `;
+        }
+
+        const isToday = day === 14;
+        html += `
+          <div class="h-28 rounded-lg border ${isToday ? 'border-brand-500 bg-teal-50/20 ring-1 ring-brand-500' : 'border-slate-200 bg-white'} p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold ${isToday ? 'text-brand-800 font-bold bg-brand-100 w-5 h-5 rounded-full flex items-center justify-center' : 'text-slate-600'}">${day}</span>
+              ${isToday ? '<span class="text-[9px] font-bold text-brand-700 uppercase">Hoy</span>' : ''}
+            </div>
+            <div class="flex-1 overflow-hidden mt-1">
+              ${eventBadge}
+            </div>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    function filterCalendar(category, btnElement) {
+      const parent = btnElement.parentElement;
+      Array.from(parent.querySelectorAll('button')).forEach(b => {
+        b.className = "px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium";
+      });
+      btnElement.className = "px-2.5 py-1 rounded bg-white font-medium text-slate-800 shadow-xs";
+      renderCalendarDays(category);
+    }
+
+    function showDayEvent(day, title, label) {
+      alert(`Detalle de Actividad SG-SST:\n\nEvento: ${title}\nFecha: ${day} de Mayo, 2025\nClasificación: ${label}\nAsistencia obligatoria con registro de quórum.`);
+    }
+
+    // Employees View Logic
+    function renderEmployeeList() {
+      const container = document.getElementById('employee-list-container');
+      container.innerHTML = state.employees.map((emp, index) => `
+        <div onclick="selectEmployee(${emp.id})" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition-colors ${index === 0 ? 'bg-slate-50 border-l-4 border-brand-600' : ''}">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">
+              ${emp.name.split(' ').map(n=>n[0]).slice(0,2).join('')}
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-800">${emp.name}</p>
+              <p class="text-[11px] text-slate-500">${emp.cargo} • ${emp.area}</p>
+            </div>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">${emp.estado}</span>
+        </div>
+      `).join('');
+    }
+
+    function selectEmployee(id) {
+      const emp = state.employees.find(e => e.id === id);
+      if (!emp) return;
+      document.getElementById('emp-detail-name').innerText = emp.name;
+      document.getElementById('emp-detail-role').innerText = `${emp.cargo} • C.C. ${emp.cc}`;
+      document.getElementById('emp-detail-avatar').innerText = emp.name.split(' ').map(n=>n[0]).slice(0,2).join('');
+    }
+
+    function filterEmployeeTable(term) {
+      const t = term.toLowerCase();
+      const container = document.getElementById('employee-list-container');
+      const filtered = state.employees.filter(e => e.name.toLowerCase().includes(t) || e.cc.includes(t) || e.cargo.toLowerCase().includes(t));
+      container.innerHTML = filtered.map(emp => `
+        <div onclick="selectEmployee(${emp.id})" class="p-3.5 hover:bg-slate-50 cursor-pointer flex items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-slate-800">${emp.name}</p>
+            <p class="text-[11px] text-slate-500">${emp.cargo}</p>
+          </div>
+          <span class="badge-status bg-emerald-100 text-emerald-800 text-[10px]">${emp.estado}</span>
+        </div>
+      `).join('');
+    }
+
+    // Actas View Logic
+    function selectActa(number) {
+      const titles = {
+        1: 'ACTA N° 001 - COPASST',
+        2: 'ACTA N° 002 - COMITÉ CONVIVENCIA',
+        3: 'ACTA N° 003 - REVISIÓN POR LA DIRECCIÓN'
+      };
+      const statuses = {
+        1: { text: 'Aprobada', class: 'bg-emerald-100 text-emerald-800' },
+        2: { text: 'En proceso', class: 'bg-amber-100 text-amber-800' },
+        3: { text: 'Aprobada', class: 'bg-emerald-100 text-emerald-800' }
+      };
+
+      document.getElementById('viewer-title').innerText = titles[number];
+      const badge = document.getElementById('viewer-status-badge');
+      badge.innerText = statuses[number].text;
+      badge.className = `badge-status font-bold ${statuses[number].class}`;
+    }
+
+    function simulateAudioUpload(input) {
+      if (input.files && input.files[0]) {
+        document.getElementById('upload-status-box').classList.remove('hidden');
+        document.getElementById('upload-status-box').innerText = `Archivo cargado: ${input.files[0].name} (Listo para transcripción)`;
+      }
+    }
+
+    function simulateTranscription() {
+      alert('Iniciando servicio de IA: Transcribiendo audio, detectando compromisos y asociando nombres de los miembros del COPASST...');
+      setTimeout(() => {
+        alert('Transcripción finalizada: Borrador de Acta generado exitosamente en pantalla.');
+        selectActa(2);
+      }, 1000);
+    }
+
+    // Autorreportes Logic
+    function renderAutorreportesTable(filterStatus = 'all') {
+      const tbody = document.getElementById('reports-tbody');
+      
+      let items = state.autorreportes;
+      if (state.currentRole === 'employee') {
+        // Only show employee's own reports
+        items = items.filter(r => r.trabajador === 'María Gómez');
+      }
+
+      if (filterStatus !== 'all') {
+        items = items.filter(r => r.estado.toLowerCase().includes(filterStatus.toLowerCase()));
+      }
+
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center p-6 text-slate-400">No se encontraron reportes radicados con los filtros seleccionados.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = items.map(r => {
+        let badgeColor = 'bg-blue-100 text-blue-800';
+        if (r.estado === 'En revisión') badgeColor = 'bg-amber-100 text-amber-800';
+        if (r.estado === 'En plan de acción') badgeColor = 'bg-purple-100 text-purple-800';
+        if (r.estado === 'Cerrado') badgeColor = 'bg-emerald-100 text-emerald-800';
+        if (r.estado === 'Aprobado') badgeColor = 'bg-emerald-100 text-emerald-800';
+        if (r.estado === 'Rechazado') badgeColor = 'bg-rose-100 text-rose-800';
+
+        return `
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="p-3 font-mono font-bold text-slate-800">${r.id}</td>
+            <td class="p-3 font-medium text-slate-800">${r.trabajador}</td>
+            <td class="p-3 text-slate-600">${r.categoria}</td>
+            <td class="p-3 text-slate-500">${r.localizacion}</td>
+            <td class="p-3 text-slate-500">${r.fecha}</td>
+            <td class="p-3">
+              <span class="badge-status ${badgeColor}">${r.estado}</span>
+            </td>
+            <td class="p-3 text-right">
+              <button onclick="alert('Detalle completo del caso ${r.id}:\\nReportante: ${r.trabajador}\\nLocalización: ${r.localizacion}\\nEstado actual: ${r.estado}\\nAcción de SST: Inspección programada.')" class="text-xs text-brand-600 hover:text-brand-800 font-semibold">Ver Ficha</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterReportsByStatus(val) {
+      renderAutorreportesTable(val);
+    }
+
+    function toggleReportTypeFields(type) {
+      if (type === 'incapacidades') {
+        document.getElementById('fields-incapacidades').classList.remove('hidden');
+        document.getElementById('fields-riesgos').classList.add('hidden');
+      } else {
+        document.getElementById('fields-riesgos').classList.remove('hidden');
+        document.getElementById('fields-incapacidades').classList.add('hidden');
+      }
+    }
+
+    function openReportModal() {
+      document.getElementById('modal-autorreporte').classList.remove('hidden');
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      document.getElementById('fecha-evento-input').value = now.toISOString().slice(0,16);
+    }
+
+    function closeReportModal() {
+      document.getElementById('modal-autorreporte').classList.add('hidden');
+    }
+
+    function previewEvidenceFile(input) {
+      if (input.files && input.files[0]) {
+        document.getElementById('evidence-filename').innerText = `Adjuntado: ${input.files[0].name}`;
+      }
+    }
+
+    function handleFormReportSubmit(e) {
+      e.preventDefault();
+      const activeUser = state.users[state.currentRole];
+      const categoryType = document.querySelector('input[name="report_category"]:checked').value;
+      
+      let categoryName = '';
+      let localizacion = '';
+
+      if (categoryType === 'riesgos') {
+        categoryName = document.getElementById('tipo-riesgo-select').value;
+        localizacion = document.getElementById('localizacion-input').value;
+      } else {
+        const dias = document.getElementById('dias-otorgados-input').value || 1;
+        categoryName = `Incapacidad Médica (${dias} días)`;
+        localizacion = 'Domicilio / EPS';
+      }
+
+      const newId = `AR-${100 + state.autorreportes.length + 1}`;
+      const now = new Date();
+      const formattedDate = `${now.getDate().toString().padStart(2,'0')}/${(now.getMonth()+1).toString().padStart(2,'0')}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes().toString().padStart(2,'0')}`;
+
+      const newReport = {
+        id: newId,
+        trabajador: activeUser.fullName,
+        categoria: categoryName,
+        localizacion: localizacion,
+        fecha: formattedDate,
+        estado: 'Abierto',
+        tipo: categoryType
+      };
+
+      state.autorreportes.unshift(newReport);
+      closeReportModal();
+      renderAutorreportesTable();
+      navigateToView('autorreporte');
+      alert(`¡Autorreporte radicado con éxito!\nNúmero de radicado oficial: ${newId}\nSe ha notificado al área de Seguridad y Salud en el Trabajo.`);
+    }
+
+    function toggleNotifications() {
+      const menu = document.getElementById('notif-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+  </script>
+<!-- END: Application State & Routing JavaScript -->
+
+
+
+
+
+
+
+
+
+
+</body></html>
