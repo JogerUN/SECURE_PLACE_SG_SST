@@ -1,6 +1,6 @@
 <!DOCTYPE html><html class="h-full bg-slate-50" lang="es"><head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Secure Place | SG-SST Colombia</title>
 <!-- BEGIN: External Tailwind CSS v3 -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -27,7 +27,9 @@
             }
           },
           fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
+            sans: ['"Ancizar Serif"', 'Georgia', 'Cambria', 'serif'],
+            serif: ['"Ancizar Serif"', 'Georgia', 'serif'],
+            display: ['"Ancizar Serif"', 'serif']
           }
         }
       }
@@ -52,6 +54,47 @@
       background: #94A3B8;
     }
     
+    
+    /* Material Design 3 Elevation & Surface Tokens */
+    .m3-surface {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 1.25rem; /* 20px - rounded-2xl */
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .m3-surface:hover {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    .m3-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      background: #FFFFFF;
+    }
+    
+    /* Typewriter Caret Animation */
+    .typewriter-caret {
+      display: inline-block;
+      width: 3px;
+      height: 1.15em;
+      background-color: #0F766E;
+      margin-left: 4px;
+      vertical-align: -0.15em;
+      animation: blinkCaret 0.8s infinite;
+    }
+    @keyframes blinkCaret {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    /* Subtle Watermark background */
+    .bg-subtle-watermark {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBCtbtt7rUG7kE_i8nFUgjsbFtXPU1qJbdGKiDaYzksB1h4wiMY10I0o4NgU_Q8B0EaZzD-gJeozKqttHSUey99xK3jzIXnFFNWSQACtJsqU6F02Ze2aCwgTEL4sO2jJl5JvXgdPiwI5_hKvMq_D-HMyEv9QfQsY47Bv3ix-KftTHNCNq51CCpoeBf9fNblUq7LvKCg-WdeF3CesRqJ0gQUDwPLVuzBgMHvWZUWy1_ItWMsbyAHWKm');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 550px auto;
+    }
+
     /* Interactive accessible outline focus */
     a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
       outline: 2px solid #0F766E; outline-offset: 2px;
@@ -70,7 +113,7 @@
   </style>
 <!-- END: Custom Styling for Layout and Transitions -->
 </head>
-<body class="h-full text-slate-800 antialiased font-sans flex flex-col bg-slate-100 selection:bg-brand-500 selection:text-white" style="font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; background-color: rgb(246, 243, 238);">
+<body class="h-full text-slate-800 antialiased font-sans flex flex-col bg-slate-100 selection:bg-brand-500 selection:text-white" style="font-family: 'Ancizar Serif', Georgia, serif; background-color: #F8F9FA;">
 <!-- BEGIN: Application Shell -->
 <div class="flex h-screen overflow-hidden" data-purpose="app-shell">
 <!-- BEGIN: Sidebar Navigation -->
@@ -236,12 +279,15 @@
 </div>
 </div>
 <!-- User Profile Avatar Pill -->
-<div class="flex items-center gap-2 border-l border-slate-200 pl-3">
+<div class="flex items-center gap-2 border-l border-slate-200 pl-3 cursor-pointer group" onclick="navigateToView('perfil')" title="Ver mi Perfil de Usuario">
 <div class="relative">
-<div class="w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center border-2 border-white shadow-xs" id="user-avatar">CR</div>
-<span class="bottom-0 right-0 absolute w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></span>
+<div class="w-9 h-9 rounded-full bg-brand-700 text-white font-bold text-xs flex items-center justify-center border-2 border-white shadow-sm group-hover:ring-2 group-hover:ring-brand-700 transition-all" id="user-avatar">CR</div>
+<span class="bottom-0 right-0 absolute w-2.5 h-2.5 bg-emerald-600 border-2 border-white rounded-full"></span>
 </div>
-<span class="hidden md:inline-block text-xs font-semibold text-slate-700" id="user-name-short">C. Rodríguez</span>
+<div class="hidden md:flex flex-col text-left">
+  <span class="text-xs font-bold text-slate-900 group-hover:text-brand-800 transition-colors" id="user-name-short">C. Rodríguez</span>
+  <span class="text-[10px] text-slate-500 font-medium">Ver Perfil</span>
+</div>
 </div>
 </div>
 </header>
@@ -251,7 +297,425 @@
 <!-- ========================================== -->
 <!-- VIEW: DASHBOARD (ADMIN & EMPLEADO)         -->
 <!-- ========================================== -->
-<section class="space-y-6" data-purpose="view-dashboard" id="view-dashboard">
+
+<!-- ========================================== -->
+<!-- VIEW: LANDING PAGE (PORTAL INSTITUCIONAL)  -->
+<!-- ========================================== -->
+<section class="space-y-6" data-purpose="view-landing" id="view-landing">
+  <!-- Hero Banner with Subtle Logo Watermark, Dynamic Typewriter and Material 3 Container -->
+  <div class="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm p-6 sm:p-10 lg:p-12 min-h-[460px] flex flex-col justify-between">
+    <!-- Subtle Watermark Logo background with controlled opacity -->
+    <div class="absolute inset-0 bg-subtle-watermark opacity-[0.045] pointer-events-none mix-blend-multiply"></div>
+    <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-50 rounded-full blur-3xl pointer-events-none opacity-60"></div>
+
+    <!-- Top Badge & Quick Context -->
+    <div class="relative z-10 flex flex-wrap items-center justify-between gap-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-bold shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
+        <span>Plataforma Oficial SG-SST • República de Colombia</span>
+      </div>
+      <div class="text-xs text-slate-500 font-medium">
+        Decreto 1072 de 2015 &amp; Resolución 0312 de 2019
+      </div>
+    </div>
+
+    <!-- Center Hero Dynamic Greeting: Writes from right to left / left to right dynamically -->
+    <div class="relative z-10 my-8 max-w-4xl">
+      <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-800 mb-2">Bienvenido a SecurePlace</p>
+      
+      <!-- Container for dynamic text typing -->
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight min-h-[4rem] sm:min-h-[5rem] flex items-center" id="landing-typewriter-container">
+        <span id="landing-typewriter-text" class="text-slate-900"></span><span class="typewriter-caret"></span>
+      </h2>
+
+      <p class="text-sm sm:text-base text-slate-600 max-w-2xl mt-3 leading-relaxed">
+        Espacio digital unificado para la gestión integral de la seguridad, salud ocupacional, registro de comités COPASST y autorreportes en tiempo real. Tu bienestar y prevención son nuestra máxima prioridad.
+      </p>
+
+      <!-- Quick Action Buttons Material 3 -->
+      <div class="flex flex-wrap items-center gap-3 mt-6">
+        <button onclick="navigateToView('dashboard')" class="px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold shadow-sm transition-all transform active:scale-95 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          Ingresar al Dashboard
+        </button>
+        <button onclick="navigateToView('autorreporte'); openReportModal();" class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-800 text-xs font-bold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 text-brand-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          Radicar Autorreporte
+        </button>
+        <button onclick="navigateToView('perfil')" class="px-4 py-2.5 rounded-xl border border-transparent hover:border-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5">
+          Ver mi Perfil de Empleado &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Relevant Features Grid (Strictly SG-SST relevant) -->
+    <div class="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-100">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-teal-50 text-brand-800 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-slate-900">Prevención Activa</h4>
+          <p class="text-[11px] text-slate-500 leading-snug">Monitoreo continuo de peligros físicos, ergonómicos y psicosociales.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-slate-900">COPASST Certificado</h4>
+          <p class="text-[11px] text-slate-500 leading-snug">Actas oficiales conforme al Formato FT-SST-014 con hash SHA-256.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-slate-900">Respuesta Inmediata</h4>
+          <p class="text-[11px] text-slate-500 leading-snug">Notificación automática ante accidentes de trabajo o incapacidades EPS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Landing Key Modules Overview (3 Material 3 Cards) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="m3-surface p-6 flex flex-col justify-between">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-teal-50 text-brand-800 flex items-center justify-center font-bold mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">Directorio de Empleados</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Base de datos de trabajadores con afiliación ARL, exámenes médicos periódicos, recomendaciones de aptitud y batería psicosocial.
+        </p>
+      </div>
+      <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-[11px] font-bold text-emerald-800">148 Afiliados Activos</span>
+        <button onclick="navigateToView('empleados')" class="text-xs font-bold text-brand-800 hover:text-brand-950">Explorar &rarr;</button>
+      </div>
+    </div>
+
+    <div class="m3-surface p-6 flex flex-col justify-between">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center font-bold mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">Capacitaciones &amp; Brigadas</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Programación de charlas obligatorias, trabajo seguro en alturas, prevención contra fuego y brigada de primeros auxilios.
+        </p>
+      </div>
+      <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-[11px] font-bold text-amber-800">4 Sesiones este Mes</span>
+        <button onclick="navigateToView('capacitaciones')" class="text-xs font-bold text-brand-800 hover:text-brand-950">Ver Cronograma &rarr;</button>
+      </div>
+    </div>
+
+    <div class="m3-surface p-6 flex flex-col justify-between">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-800 flex items-center justify-center font-bold mb-4">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+        </div>
+        <h3 class="text-sm font-bold text-slate-900 mb-1">Autorreporte de Condiciones</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Canal directo para radicar condiciones o actos inseguros e incapacidades médicas con trazabilidad legal y soporte documental.
+        </p>
+      </div>
+      <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-[11px] font-bold text-rose-800">Canal Confidencial Activo</span>
+        <button onclick="navigateToView('autorreporte')" class="text-xs font-bold text-brand-800 hover:text-brand-950">Consultar &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Landing Page Footer (Información General del Sistema) -->
+  <footer class="mt-8 pt-8 pb-4 border-t border-slate-200/80 text-xs text-slate-600">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-6 h-6 rounded bg-brand-700 text-white font-bold text-xs flex items-center justify-center">SP</div>
+          <span class="font-bold text-slate-900 text-sm">SecurePlace SG-SST</span>
+        </div>
+        <p class="text-[11px] text-slate-500 leading-relaxed">
+          Plataforma tecnológica para la administración del Sistema de Gestión de Seguridad y Salud en el Trabajo de empresas en Colombia.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-2">Marco Normativo Legal</h4>
+        <ul class="space-y-1 text-[11px] text-slate-600">
+          <li>• Decreto Único Reglamentario 1072 de 2015</li>
+          <li>• Resolución 0312 de 2019 (Estándares Mínimos)</li>
+          <li>• Circular 071 de 2020 MinTrabajo (Firmas Digitales)</li>
+          <li>• Resolución 2404 de 2019 (Riesgo Psicosocial)</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-2">Líneas de Atención &amp; Emergencia</h4>
+        <div class="space-y-1 text-[11px] text-slate-600">
+          <p><strong>ARL SURA:</strong> 01 8000 511 414 / #888</p>
+          <p><strong>Línea SST Interna:</strong> Ext. 104 - 105</p>
+          <p><strong>Correo SST:</strong> sst@empresa.com</p>
+          <p><strong>Emergencias Nacionales:</strong> 123</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-slate-800 uppercase tracking-wider text-[11px] mb-2">Seguridad &amp; Privacidad</h4>
+        <div class="space-y-1 text-[11px] text-slate-600">
+          <p>• Datos protegidos bajo Ley 1581 de 2012 (Habeas Data).</p>
+          <p>• Cifrado de documentos y actas con SHA-256.</p>
+          <p>• Acceso basado en roles RBAC.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-200/60 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
+      <span>© 2025-2026 SecurePlace SG-SST. Todos los derechos reservados. Desarrollado con Material Design 3.</span>
+      <div class="flex items-center gap-4">
+        <span>Versión 2.4.0</span>
+        <span>•</span>
+        <span class="text-brand-800 font-bold">Conforme Estándares Mínimos 0312</span>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<!-- ========================================== -->
+<!-- VIEW: PROFILE (PERFIL COMPLETO EMPLEADO)   -->
+<!-- ========================================== -->
+<section class="hidden space-y-6" data-purpose="view-perfil" id="view-perfil">
+  <!-- Profile Page Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-slate-900">Perfil de Usuario &amp; Ficha de Empleado</h2>
+      <p class="text-xs text-slate-500">Información personal, sociodemográfica, contractual y médica en el SG-SST</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="downloadEmployeePDF()" class="px-3.5 py-2 border border-slate-300 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-1.5 transition-colors shadow-xs">
+        <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        Descargar Ficha PDF
+      </button>
+      <button onclick="openEditEmployeeModal()" class="px-4 py-2 bg-brand-700 hover:bg-brand-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+        Actualizar Datos
+      </button>
+    </div>
+  </div>
+
+  <!-- Profile Card Banner (Material Design 3 Surface with Auto Initials Avatar) -->
+  <div class="m3-surface p-6 sm:p-8">
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+      <!-- Auto Photo / Initials Placeholder with upload ability -->
+      <div class="relative group flex-shrink-0">
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-brand-700 text-white font-extrabold text-3xl sm:text-4xl flex items-center justify-center border-4 border-white shadow-md tracking-wider overflow-hidden" id="profile-avatar-display">
+          <!-- Populated by JS with initials of first name and last name -->
+          CR
+        </div>
+        <button onclick="triggerProfilePhotoUpload()" class="absolute bottom-1 right-1 p-2 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-xs shadow-md transition-all group-hover:scale-105" title="Cargar / Cambiar foto de perfil">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+        </button>
+        <input type="file" id="profile-photo-input" accept="image/*" class="hidden" onchange="handleProfilePhotoChange(this)">
+      </div>
+
+      <!-- Main Identity Details -->
+      <div class="flex-1 text-center sm:text-left space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900" id="profile-name-header">Carlos Rodríguez</h3>
+            <p class="text-xs text-slate-600 font-semibold" id="profile-cargo-header">Especialista Líder SG-SST • Planta Central Bogotá</p>
+          </div>
+          <div class="flex items-center justify-center sm:justify-end gap-2">
+            <span class="badge-status bg-emerald-100 text-emerald-900 text-xs font-bold" id="profile-status-badge">Activo Laboralmente</span>
+            <span class="badge-status bg-brand-100 text-brand-900 text-xs font-bold" id="profile-role-badge">Rol: Administrador</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 text-xs text-slate-600 border-t border-slate-100">
+          <div>
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">Correo Corporativo</span>
+            <span class="font-bold text-slate-800" id="profile-email-display">admin@empresa.com</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">Cédula de Ciudadanía</span>
+            <span class="font-bold text-slate-800" id="profile-cc-display">1.019.234.567</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">ID Empleado DB</span>
+            <span class="font-mono font-bold text-brand-800" id="profile-id-display">EMP-001</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Standard Web App Profile Tabs / Structured Sections conforming to Table 'empleados' -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Left Column: Datos Sociodemográficos & Contrato (2 cols in lg) -->
+    <div class="lg:col-span-2 space-y-6">
+      
+      <!-- Card 1: Datos Sociodemográficos -->
+      <div class="m3-surface p-6">
+        <div class="flex items-center gap-2.5 pb-3 mb-4 border-b border-slate-100">
+          <div class="w-8 h-8 rounded-lg bg-teal-50 text-brand-800 flex items-center justify-center font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          </div>
+          <h4 class="text-sm font-bold text-slate-900">Datos Sociodemográficos (Perfil de Población)</h4>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs" id="profile-socio-container">
+          <!-- Populated from dbMock -->
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Edad &amp; Género</span>
+            <span class="font-bold text-slate-800" id="prof-edad-genero">34 años / Masculino</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Nivel de Escolaridad</span>
+            <span class="font-bold text-slate-800" id="prof-escolaridad">Técnico Industrial en Procesos</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Estrato &amp; Estado Civil</span>
+            <span class="font-bold text-slate-800" id="prof-estrato-civil">Estrato 3 / Casado (2 personas a cargo)</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Contacto de Emergencia</span>
+            <span class="font-bold text-slate-800" id="prof-emergencia">Esposa: 310 998 8776</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Contrato & Modalidad Laboral -->
+      <div class="m3-surface p-6">
+        <div class="flex items-center gap-2.5 pb-3 mb-4 border-b border-slate-100">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-800 flex items-center justify-center font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <h4 class="text-sm font-bold text-slate-900">Contrato, Modalidad &amp; Afiliación ARL</h4>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Tipo de Contrato</span>
+            <span class="font-bold text-slate-800" id="prof-tipo-contrato">Término Indefinido</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Modalidad de Trabajo</span>
+            <span class="font-bold text-slate-800" id="prof-modalidad">Presencial (Turno Rotativo 8h)</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Entidad ARL Afiliada</span>
+            <span class="font-bold text-slate-800" id="prof-arl-info">Seguros SURA • Clase IV (Riesgo Alto)</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">EPS &amp; Antigüedad</span>
+            <span class="font-bold text-slate-800" id="prof-eps-antiguedad">Sanitas Contributivo • Ingreso 15-Ene-2021 (4 años)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Datos de Salud Ocupacional & Exámenes -->
+      <div class="m3-surface p-6">
+        <div class="flex items-center gap-2.5 pb-3 mb-4 border-b border-slate-100">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          </div>
+          <h4 class="text-sm font-bold text-slate-900">Datos de Salud Ocupacional &amp; Aptitud Médica</h4>
+        </div>
+        <div class="space-y-3 text-xs">
+          <div class="flex items-center justify-between p-3 rounded-xl bg-emerald-50/60 border border-emerald-200">
+            <div>
+              <span class="font-bold text-emerald-950 block">Examen Médico Periódico Ocupacional</span>
+              <span class="text-[11px] text-emerald-800" id="prof-examen-vigencia">Vigente (Realizado Noviembre 2024 - Próximo Nov 2025)</span>
+            </div>
+            <span class="badge-status bg-emerald-200/80 text-emerald-950 font-bold text-[10px]">Apto sin restricciones</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Recomendaciones Ergonómicas / Laborales</span>
+            <p class="font-medium text-slate-800 mt-0.5" id="prof-recomendaciones">Pausas activas visuales y lumbares cada 2 horas; calibración ergonómica de silla y plano de trabajo.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+            <span class="text-slate-500 block text-[10px] uppercase font-bold">Antecedentes Médicos &amp; Alergias Relevantes</span>
+            <p class="font-medium text-slate-800 mt-0.5" id="prof-alergias">Alergia declarada a la Penicilina. Sin antecedentes de asma ocupacional ni restricciones osteomusculares.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Psicosocial, Security Settings & Quick Shortcuts -->
+    <div class="space-y-6">
+      
+      <!-- Card: Batería Riesgo Psicosocial -->
+      <div class="m3-surface p-6">
+        <div class="flex items-center gap-2.5 pb-3 mb-4 border-b border-slate-100">
+          <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-800 flex items-center justify-center font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <h4 class="text-sm font-bold text-slate-900">Batería Riesgo Psicosocial</h4>
+        </div>
+        <div class="space-y-3 text-xs" id="profile-psicosocial-container">
+          <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+            <span class="text-slate-600">Fecha Aplicación Oficial:</span>
+            <strong class="text-slate-900" id="prof-psi-fecha">Octubre 2024</strong>
+          </div>
+          <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+            <span class="text-slate-600">Nivel Intralaboral:</span>
+            <span class="badge-status bg-emerald-100 text-emerald-900 font-bold" id="prof-psi-intra">Bajo</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+            <span class="text-slate-600">Nivel Extralaboral:</span>
+            <span class="badge-status bg-amber-100 text-amber-900 font-bold" id="prof-psi-extra">Medio (Desplazamientos)</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5">
+            <span class="text-slate-600">Próxima Aplicación:</span>
+            <strong class="text-brand-800" id="prof-psi-prox">Octubre 2025</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Seguridad de la Cuenta & Preferencias -->
+      <div class="m3-surface p-6">
+        <h4 class="text-sm font-bold text-slate-900 mb-3 pb-2 border-b border-slate-100">Configuración de la Cuenta</h4>
+        <div class="space-y-3 text-xs">
+          <button onclick="requestRoleSwitch(state.currentRole === 'admin' ? 'employee' : 'admin')" class="w-full py-2 px-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold flex items-center justify-between transition-colors">
+            <span>Alternar Rol con Verificación</span>
+            <span class="text-[10px] text-brand-800">RBAC Activo &rarr;</span>
+          </button>
+          <button onclick="alert('Funcionalidad de cambio de contraseña: Se ha enviado un correo electrónico de verificación para actualizar las credenciales.')" class="w-full py-2 px-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold flex items-center justify-between transition-colors">
+            <span>Cambiar Contraseña</span>
+            <span class="text-[10px] text-slate-500">••••••••</span>
+          </button>
+          <div class="pt-2 flex items-center justify-between text-xs text-slate-600">
+            <span>Notificaciones SG-SST</span>
+            <span class="badge-status bg-emerald-100 text-emerald-900 font-bold">Activadas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Shortcuts Material 3 -->
+      <div class="m3-surface p-6 bg-gradient-to-br from-slate-50 to-white">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Accesos Directos</h4>
+        <div class="space-y-2">
+          <button onclick="navigateToView('autorreporte'); openReportModal();" class="w-full py-2.5 px-3 rounded-xl bg-brand-50 hover:bg-brand-100/70 text-brand-900 font-bold text-xs flex items-center gap-2 transition-colors text-left">
+            <svg class="w-4 h-4 text-brand-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            Radicar nuevo autorreporte
+          </button>
+          <button onclick="navigateToView('actas')" class="w-full py-2.5 px-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center gap-2 transition-colors text-left">
+            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Consultar actas del COPASST
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="hidden space-y-6" data-purpose="view-dashboard" id="view-dashboard">
 <!-- Top KPI stats cards (Visible primarily for Admin, customized for Employee) -->
 <!-- Top KPI stats cards (Dynamically populated from mock database / ready for API integration) -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="dashboard-kpis-admin">
@@ -1886,49 +2350,89 @@ Vocal Suplente</td>
 <script data-purpose="app-logic">
     /* =========================================================================
      * SECUREPLACE SG-SST - APPLICATION STATE & DATA LAYER ARCHITECTURE
-     * =========================================================================
-     * ARCHITECTURE NOTE FOR DATABASE INTEGRATION:
-     * When connecting your real database backend (e.g., PostgreSQL, Firebase Firestore, 
-     * Supabase, Node.js REST API, GraphQL, etc.):
-     * 1. Replace the mock collections below (dbMock.users, dbMock.employees, dbMock.actas) 
-     *    with asynchronous fetch() / axios / SDK queries.
-     * 2. Replace the authentication logic in 'handleAuthSubmit()' with JWT/Session validation.
-     * 3. 'loadDashboardKPIs()' computes metrics dynamically from the DB.
+     * Material Design 3 Structure & Integration
      * ========================================================================= */
 
-    // MOCK DATABASE REPOSITORY (Simulation of remote Database tables / collections)
+    // MOCK DATABASE REPOSITORY (Simulation of remote Database tables)
     const dbMock = {
-      // USERS & ROLES TABLE
+      // USERS & ROLES TABLE: conforms to requested Table structure
       users: [
         {
-          id: 'usr_001',
-          email: 'admin@empresa.com',
-          password: 'admin123',
-          role: 'admin',
+          id_empleado: 1,
+          nombres: 'Carlos',
+          apellidos: 'Rodríguez',
           fullName: 'Carlos Rodríguez',
+          correo: 'admin@empresa.com',
+          password: 'admin123',
+          rol: 'Administrador', // 'Administrador' | 'Empleado' | 'Secretario'
+          cargo: 'Especialista Líder SG-SST',
           greeting: 'Buen día, Carlos Rodríguez (Administrador)',
           roleLabel: 'Rol activo: Administrador de SST',
           shortName: 'C. Rodríguez',
           initials: 'CR',
           cedula: '1.019.234.567',
-          cargo: 'Especialista Líder SG-SST'
+          // Structured text fields matching database schema
+          datos_sociodemograficos: {
+            edad: 34,
+            genero: 'Masculino',
+            escolaridad: 'Técnico Industrial en Procesos',
+            estratoCivil: 'Estrato 3 / Casado (2 personas a cargo)',
+            emergencia: 'Esposa: 310 998 8776'
+          },
+          datos_salud: {
+            examenPeriodico: 'Vigente (Noviembre 2024 - Próximo Nov 2025)',
+            conceptoAptitud: 'Apto sin restricciones',
+            recomendaciones: 'Pausas activas visuales y lumbares cada 2 horas; calibración ergonómica.',
+            alergias: 'Penicilina declarada. Sin antecedentes de asma ocupacional.'
+          },
+          contrato_modalidad: 'Término Indefinido • Presencial (Turno Rotativo 8h)',
+          arl_info: 'Seguros SURA • Clase IV (Riesgo Alto) • Cód. Actividad 2919',
+          datos_psicosociales: {
+            fecha: 'Octubre 2024',
+            intra: 'Bajo',
+            extra: 'Medio (Desplazamientos)',
+            prox: 'Octubre 2025'
+          }
         },
         {
-          id: 'usr_002',
-          email: 'maria.gomez@empresa.com',
-          password: 'emp123',
-          role: 'employee',
+          id_empleado: 2,
+          nombres: 'María',
+          apellidos: 'Gómez',
           fullName: 'María Gómez',
+          correo: 'maria.gomez@empresa.com',
+          password: 'emp123',
+          rol: 'Empleado',
+          cargo: 'Operaria de Almacén',
           greeting: 'Buen día, María Gómez (Empleado)',
           roleLabel: 'Rol activo: Empleado / Operario',
           shortName: 'M. Gómez',
           initials: 'MG',
           cedula: '1.032.889.123',
-          cargo: 'Operaria de Almacén'
+          datos_sociodemograficos: {
+            edad: 28,
+            genero: 'Femenino',
+            escolaridad: 'Bachiller Técnico Comercial',
+            estratoCivil: 'Estrato 2 / Soltera (1 persona a cargo)',
+            emergencia: 'Madre: 311 445 7890'
+          },
+          datos_salud: {
+            examenPeriodico: 'Vigente (Enero 2025 - Próximo Ene 2026)',
+            conceptoAptitud: 'Apto con recomendaciones ergonómicas',
+            recomendaciones: 'Uso obligatorio de botas de seguridad y faja de levantamiento de cargas.',
+            alergias: 'Polvo y ácaros. Sin restricciones cardiovasculares.'
+          },
+          contrato_modalidad: 'Término Fijo (1 año) • Presencial Almacén',
+          arl_info: 'Seguros SURA • Clase III (Riesgo Medio) • Cód. Actividad 6302',
+          datos_psicosociales: {
+            fecha: 'Noviembre 2024',
+            intra: 'Bajo',
+            extra: 'Bajo',
+            prox: 'Noviembre 2025'
+          }
         }
       ],
 
-      // EMPLOYEES TABLE: Real demographic, occupational health & ARL records
+      // EMPLOYEES TABLE
       employees: [
         { 
           id: 1, 
@@ -2068,7 +2572,6 @@ Vocal Suplente</td>
       ],
 
       // ACTAS TABLE - FORM STANDARD FT-SST-014
-      // Contiene campos oficiales del formato 'Formato_acta_COPASST_en_blanco.docx/pdf'
       actas: [
         { 
           id: 1, 
@@ -2230,17 +2733,20 @@ Vocal Suplente</td>
     // RUNTIME APPLICATION STATE
     const state = {
       currentRole: 'admin', // 'admin' | 'employee'
-      currentView: 'dashboard',
+      currentView: 'landing', // 'landing' | 'dashboard' | 'perfil' | 'empleados' | 'reuniones' | 'actas' | 'capacitaciones' | 'autorreporte'
       currentUser: dbMock.users[0],
       selectedEmployeeId: 1,
-      selectedActaId: 1, // Currently viewed Acta ID
+      selectedActaId: 1,
       calendarMonth: 4, // 0-indexed (4 = Mayo)
-      calendarYear: 2025
+      calendarYear: 2025,
+      typewriterInterval: null
     };
 
-    // NAVIGATION MAPS PER ROLE
+    // NAVIGATION ITEMS (ADMIN & EMPLEADO) - Material Design 3 Navigation Drawer
     const navItemsAdmin = [
-      { id: 'dashboard', label: 'Dashboard', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+      { id: 'landing', label: 'Inicio (Portal)', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+      { id: 'dashboard', label: 'Dashboard SST', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>' },
+      { id: 'perfil', label: 'Mi Perfil', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>' },
       { id: 'empleados', label: 'Empleados', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>' },
       { id: 'reuniones', label: 'Reuniones COPASST', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>' },
       { id: 'actas', label: 'Actas', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>' },
@@ -2249,7 +2755,9 @@ Vocal Suplente</td>
     ];
 
     const navItemsEmployee = [
-      { id: 'dashboard', label: 'Dashboard', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+      { id: 'landing', label: 'Inicio (Portal)', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>' },
+      { id: 'dashboard', label: 'Mi Dashboard', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>' },
+      { id: 'perfil', label: 'Mi Perfil', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>' },
       { id: 'actas', label: 'Actas (Consulta)', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>' },
       { id: 'autorreporte', label: 'Mi Autorreporte', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>' }
     ];
@@ -2264,6 +2772,11 @@ Vocal Suplente</td>
       selectActa(1);
       renderAutorreportesTable();
       updateTopBarProfile();
+      updateProfileViewData();
+      startLandingTypewriter();
+
+      // Ensure landing page is active at start
+      navigateToView('landing');
 
       // Mobile sidebar trigger
       const mobileBtn = document.getElementById('mobile-menu-btn');
@@ -2273,6 +2786,115 @@ Vocal Suplente</td>
         });
       }
     });
+
+    /* =========================================================================
+     * DYNAMIC TYPEWRITER EFFECT (LANDING PAGE)
+     * Writes out: "Excelente día <User name>, ¿listo para empezar? Juntos construimos un entorno seguro y saludable."
+     * ========================================================================= */
+    function startLandingTypewriter() {
+      const container = document.getElementById('landing-typewriter-text');
+      if (!container) return;
+
+      if (state.typewriterInterval) {
+        clearInterval(state.typewriterInterval);
+      }
+
+      const userName = state.currentUser ? state.currentUser.fullName : 'Usuario';
+      const fullText = `Excelente día ${userName}, ¿listo para empezar? Juntos construimos un entorno seguro y saludable.`;
+
+      container.innerText = '';
+      let charIndex = 0;
+
+      state.typewriterInterval = setInterval(() => {
+        if (charIndex <= fullText.length) {
+          container.innerText = fullText.slice(0, charIndex);
+          charIndex++;
+        } else {
+          clearInterval(state.typewriterInterval);
+        }
+      }, 35);
+    }
+
+    /* =========================================================================
+     * PROFILE VIEW SYNCHRONIZATION (Table empleados Schema)
+     * ========================================================================= */
+    function updateProfileViewData() {
+      const u = state.currentUser;
+      if (!u) return;
+
+      // Header info & avatar initials
+      const avatarEl = document.getElementById('profile-avatar-display');
+      const nameHeader = document.getElementById('profile-name-header');
+      const cargoHeader = document.getElementById('profile-cargo-header');
+      const roleBadge = document.getElementById('profile-role-badge');
+      const emailDisp = document.getElementById('profile-email-display');
+      const ccDisp = document.getElementById('profile-cc-display');
+      const idDisp = document.getElementById('profile-id-display');
+
+      if (avatarEl) {
+        // Automatic initials from first name and last name
+        const firstInitial = (u.nombres || u.fullName.split(' ')[0] || 'U')[0];
+        const lastInitial = (u.apellidos || u.fullName.split(' ')[1] || 'S')[0];
+        avatarEl.innerText = (firstInitial + lastInitial).toUpperCase();
+      }
+
+      if (nameHeader) nameHeader.innerText = `${u.nombres || ''} ${u.apellidos || ''}`.trim() || u.fullName;
+      if (cargoHeader) cargoHeader.innerText = `${u.cargo} • Sede Principal`;
+      if (roleBadge) roleBadge.innerText = `Rol: ${u.rol || (state.currentRole === 'admin' ? 'Administrador' : 'Empleado')}`;
+      if (emailDisp) emailDisp.innerText = u.correo || u.email;
+      if (ccDisp) ccDisp.innerText = u.cedula;
+      if (idDisp) idDisp.innerText = `EMP-00${u.id_empleado || 1}`;
+
+      // Sociodemographic data
+      const socio = u.datos_sociodemograficos || {};
+      const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val || '--'; };
+
+      setEl('prof-edad-genero', `${socio.edad || 30} años / ${socio.genero || 'Masculino'}`);
+      setEl('prof-escolaridad', socio.escolaridad || 'Técnico Industrial');
+      setEl('prof-estrato-civil', socio.estratoCivil || 'Estrato 3');
+      setEl('prof-emergencia', socio.emergencia || 'Línea de emergencia 123');
+
+      // Contract and ARL
+      setEl('prof-tipo-contrato', u.contrato_modalidad ? u.contrato_modalidad.split('•')[0].trim() : 'Término Indefinido');
+      setEl('prof-modalidad', u.contrato_modalidad ? u.contrato_modalidad.split('•')[1]?.trim() || 'Presencial' : 'Presencial (Turno Rotativo)');
+      setEl('prof-arl-info', u.arl_info || 'Seguros SURA • Clase IV (Riesgo Alto)');
+
+      // Occupational Health
+      const salud = u.datos_salud || {};
+      setEl('prof-examen-vigencia', salud.examenPeriodico || 'Vigente en SG-SST');
+      setEl('prof-recomendaciones', salud.recomendaciones || 'Pausas activas visuales y lumbares.');
+      setEl('prof-alergias', salud.alergias || 'Ninguna alergia declarada.');
+
+      // Psychosocial
+      const psi = u.datos_psicosociales || {};
+      setEl('prof-psi-fecha', psi.fecha || 'Octubre 2024');
+      setEl('prof-psi-intra', psi.intra || 'Bajo');
+      setEl('prof-psi-extra', psi.extra || 'Medio');
+      setEl('prof-psi-prox', psi.prox || 'Octubre 2025');
+    }
+
+    function triggerProfilePhotoUpload() {
+      const input = document.getElementById('profile-photo-input');
+      if (input) input.click();
+    }
+
+    function handleProfilePhotoChange(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const avatarEl = document.getElementById('profile-avatar-display');
+          if (avatarEl) {
+            avatarEl.innerHTML = `<img src="${e.target.result}" alt="Foto de perfil" class="w-full h-full object-cover">`;
+          }
+          const topbarAvatar = document.getElementById('user-avatar');
+          if (topbarAvatar) {
+            topbarAvatar.innerHTML = `<img src="${e.target.result}" alt="Foto de perfil" class="w-full h-full object-cover rounded-full">`;
+          }
+          alert('¡Foto de perfil actualizada exitosamente en el sistema!');
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
 
     /* =========================================================================
      * AUTHENTICATION & ROLE SWITCHING (RBAC)
@@ -2320,7 +2942,7 @@ Vocal Suplente</td>
       const password = document.getElementById('auth-password-input').value.trim();
       const errorBox = document.getElementById('auth-error-msg');
 
-      const matchedUser = dbMock.users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+      const matchedUser = dbMock.users.find(u => (u.correo || u.email).toLowerCase() === email.toLowerCase() && u.password === password);
 
       if (!matchedUser) {
         errorBox.innerText = 'Credenciales inválidas. Verifique su correo corporativo y contraseña.';
@@ -2328,7 +2950,9 @@ Vocal Suplente</td>
         return;
       }
 
-      if (matchedUser.role !== targetRole) {
+      const userRoleMapped = matchedUser.rol ? (matchedUser.rol.toLowerCase() === 'administrador' ? 'admin' : 'employee') : matchedUser.role;
+
+      if (userRoleMapped !== targetRole) {
         errorBox.innerText = `Acceso denegado: El usuario ${matchedUser.fullName} no cuenta con perfil de ${targetRole === 'admin' ? 'Administrador' : 'Empleado'}.`;
         errorBox.classList.remove('hidden');
         return;
@@ -2360,9 +2984,11 @@ Vocal Suplente</td>
       }
 
       updateTopBarProfile();
+      updateProfileViewData();
+      startLandingTypewriter();
       renderNavigation();
       loadDashboardKPIs();
-      renderActasList(); // Re-render actas with appropriate edit permissions
+      renderActasList();
 
       if (newRole === 'employee') {
         document.getElementById('dashboard-kpis-admin').classList.add('hidden');
@@ -2394,7 +3020,14 @@ Vocal Suplente</td>
       const activeUser = state.currentUser;
       document.getElementById('user-greeting').innerText = activeUser.greeting;
       document.getElementById('user-role-label').innerText = activeUser.roleLabel;
-      document.getElementById('user-avatar').innerText = activeUser.initials;
+      
+      const avatarEl = document.getElementById('user-avatar');
+      if (avatarEl) {
+        const firstInitial = (activeUser.nombres || activeUser.fullName.split(' ')[0] || 'U')[0];
+        const lastInitial = (activeUser.apellidos || activeUser.fullName.split(' ')[1] || 'S')[0];
+        avatarEl.innerText = (firstInitial + lastInitial).toUpperCase();
+      }
+      
       document.getElementById('user-name-short').innerText = activeUser.shortName;
       
       const reportWorkerInput = document.getElementById('trabajador-nombre-input');
@@ -2457,6 +3090,7 @@ Vocal Suplente</td>
       
       container.innerHTML = items.map(item => {
         const isActive = state.currentView === item.id;
+        
         const activeClasses = isActive 
           ? 'bg-brand-700 text-white font-bold shadow-xs' 
           : 'text-slate-800 hover:bg-slate-200/80 hover:text-slate-950 font-semibold';
@@ -2469,7 +3103,7 @@ Vocal Suplente</td>
             onclick="navigateToView('${item.id}')" 
             title="${item.label}" 
             aria-label="${item.label}" 
-            class="nav-item w-full flex items-center ${justifyClass} px-3 py-2.5 rounded-lg text-xs transition-colors ${activeClasses} cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700" 
+            class="nav-item w-full flex items-center ${justifyClass} px-3 py-2.5 rounded-xl text-xs transition-colors ${activeClasses} cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700" 
             aria-current="${isActive ? 'page' : 'false'}"
           >
             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">${item.icon}</svg>
@@ -2481,7 +3115,7 @@ Vocal Suplente</td>
 
     function navigateToView(viewId) {
       state.currentView = viewId;
-      const views = ['dashboard', 'empleados', 'reuniones', 'actas', 'capacitaciones', 'autorreporte'];
+      const views = ['landing', 'dashboard', 'perfil', 'empleados', 'reuniones', 'actas', 'capacitaciones', 'autorreporte'];
       views.forEach(v => {
         const el = document.getElementById(`view-${v}`);
         if (el) {
@@ -2492,6 +3126,13 @@ Vocal Suplente</td>
           }
         }
       });
+
+      if (viewId === 'landing') {
+        startLandingTypewriter();
+      } else if (viewId === 'perfil') {
+        updateProfileViewData();
+      }
+
       renderNavigation();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -2534,7 +3175,7 @@ Vocal Suplente</td>
       const totalDays = new Date(year, month + 1, 0).getDate();
 
       for (let i = 0; i < offsetDays; i++) {
-        html += `<div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>`;
+        html += `<div class="h-28 rounded-xl bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>`;
       }
 
       for (let day = 1; day <= totalDays; day++) {
@@ -2547,7 +3188,7 @@ Vocal Suplente</td>
           if (event.type === 'inspeccion') colorClass = 'bg-purple-700 text-white';
 
           eventBadge = `
-            <div onclick="showDayEvent(${day}, '${event.title}', '${event.label}')" class="mt-1 p-1 rounded ${colorClass} text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="${event.title}">
+            <div onclick="showDayEvent(${day}, '${event.title}', '${event.label}')" class="mt-1 p-1 rounded-lg ${colorClass} text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="${event.title}">
               ${event.title}
             </div>
           `;
@@ -2555,7 +3196,7 @@ Vocal Suplente</td>
 
         const isToday = (day === 14 && month === 4 && year === 2025);
         html += `
-          <div class="h-28 rounded-lg border ${isToday ? 'border-brand-700 bg-teal-50/40 ring-2 ring-brand-700' : 'border-slate-200 bg-white'} p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+          <div class="h-28 rounded-xl border ${isToday ? 'border-brand-700 bg-teal-50/40 ring-2 ring-brand-700' : 'border-slate-200 bg-white'} p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold ${isToday ? 'text-brand-900 bg-brand-100 w-5 h-5 rounded-full flex items-center justify-center' : 'text-slate-700'}">${day}</span>
               ${isToday ? '<span class="text-[9px] font-bold text-brand-800 uppercase tracking-wider">Hoy</span>' : ''}
@@ -2572,9 +3213,9 @@ Vocal Suplente</td>
     function filterCalendar(category, btnElement) {
       const parent = btnElement.parentElement;
       Array.from(parent.querySelectorAll('button')).forEach(b => {
-        b.className = "px-2.5 py-1 rounded text-slate-700 hover:text-slate-950 font-semibold";
+        b.className = "px-2.5 py-1 rounded-lg text-slate-700 hover:text-slate-950 font-semibold";
       });
-      btnElement.className = "px-2.5 py-1 rounded bg-white font-bold text-slate-900 shadow-xs ring-1 ring-slate-200";
+      btnElement.className = "px-2.5 py-1 rounded-lg bg-white font-bold text-slate-900 shadow-xs ring-1 ring-slate-200";
       renderCalendarDays(category);
     }
 
@@ -2600,7 +3241,7 @@ Vocal Suplente</td>
             aria-selected="${isSelected ? 'true' : 'false'}"
           >
             <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center">
+              <div class="w-9 h-9 rounded-xl bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center">
                 ${emp.name.split(' ').map(n=>n[0]).slice(0,2).join('')}
               </div>
               <div>
@@ -2661,7 +3302,7 @@ Vocal Suplente</td>
       container.innerHTML = filtered.map(emp => `
         <div onclick="selectEmployee(${emp.id})" class="p-3.5 hover:bg-slate-100/70 cursor-pointer flex items-center justify-between transition-colors ${emp.id === state.selectedEmployeeId ? 'bg-teal-50/60 border-l-4 border-brand-700' : ''}">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center">
+            <div class="w-9 h-9 rounded-xl bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center">
               ${emp.name.split(' ').map(n=>n[0]).slice(0,2).join('')}
             </div>
             <div>
@@ -2707,13 +3348,13 @@ Vocal Suplente</td>
         closeModal('modal-edit-employee');
         renderEmployeeList();
         loadDashboardKPIs();
+        updateProfileViewData();
         alert(`Registro actualizado exitosamente en la base de datos de SST para: ${emp.name}.`);
       }
     }
 
     function downloadEmployeePDF() {
-      const emp = dbMock.employees.find(e => e.id === state.selectedEmployeeId);
-      if (!emp) return;
+      const emp = dbMock.employees.find(e => e.id === state.selectedEmployeeId) || dbMock.employees[0];
       alert(`Descargando Ficha Sociodemográfica y de Salud Ocupacional en PDF...\n\nEmpleado: ${emp.name}\nCédula: ${emp.cc}\nClase ARL: ${emp.claseRiesgo}\nDocumento sellado digitalmente conforme al Decreto 1072 de 2015.`);
     }
 
@@ -2751,7 +3392,7 @@ Vocal Suplente</td>
         return `
           <div 
             onclick="selectActa(${acta.id})" 
-            class="cursor-pointer p-3 rounded-lg ${borderClass} transition-all"
+            class="cursor-pointer p-3 rounded-xl ${borderClass} transition-all"
             role="button"
             tabindex="0"
           >
@@ -2779,7 +3420,6 @@ Vocal Suplente</td>
       const acta = dbMock.actas.find(a => a.id === actaId) || dbMock.actas[0];
       if (!acta) return;
 
-      // Update Header Title & Status
       const viewerTitle = document.getElementById('viewer-title');
       const statusBadge = document.getElementById('viewer-status-badge');
       const editBtn = document.getElementById('btn-edit-acta');
@@ -2794,7 +3434,6 @@ Vocal Suplente</td>
         statusBadge.className = `badge-status ${badgeClass} text-[10px]`;
       }
 
-      // Check editing eligibility: Only Admin AND unapproved actas (En proceso / Borrador)
       const canEdit = (state.currentRole === 'admin' && acta.status !== 'Aprobada');
       if (editBtn) {
         if (canEdit) {
@@ -2814,7 +3453,6 @@ Vocal Suplente</td>
         }
       }
 
-      // Populate Formato FT-SST-014 visual fields:
       const setEl = (id, val) => {
         const el = document.getElementById(id);
         if (el) el.innerText = val;
@@ -2839,7 +3477,6 @@ Vocal Suplente</td>
       setEl('doc-des-compromisos', acta.desarrolloCompromisos);
       setEl('doc-des-prox-reunion', acta.desarrolloProxReunion);
 
-      // Populate Signatures Table
       const firmasTbody = document.getElementById('doc-firmas-tbody');
       if (firmasTbody) {
         firmasTbody.innerHTML = acta.firmas.map(f => `
@@ -2851,7 +3488,6 @@ Vocal Suplente</td>
       }
     }
 
-    // Modal Edit Acta Logic
     function openEditActaModal() {
       const acta = dbMock.actas.find(a => a.id === state.selectedActaId);
       if (!acta) return;
@@ -2882,7 +3518,6 @@ Vocal Suplente</td>
       const acta = dbMock.actas.find(a => a.id === id);
       if (!acta) return;
 
-      // Update fields maintaining the official format FT-SST-014
       acta.fecha = document.getElementById('edit-acta-fecha').value.trim();
       acta.lugar = document.getElementById('edit-acta-lugar').value.trim();
       acta.horaIni = document.getElementById('edit-acta-hora-ini').value.trim();
