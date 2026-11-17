@@ -148,15 +148,29 @@
   <div class="flex h-screen overflow-hidden" data-purpose="app-shell">
     <!-- BEGIN: Sidebar Navigation -->
 
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="sidebar-backdrop"
+      class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity cursor-pointer"
+      onclick="toggleMobileSidebar(false)"></div>
+
     <aside aria-label="Navegación principal"
-      class="w-64 text-slate-800 border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-300 z-30 overflow-hidden"
+      class="fixed inset-y-0 left-0 z-50 w-64 -translate-x-full transition-all duration-300 ease-in-out lg:static lg:translate-x-0 flex flex-col flex-shrink-0 text-slate-800 border-r border-slate-200 overflow-hidden shadow-2xl lg:shadow-none"
       id="main-sidebar" style="background-color: #fbf5e5;">
       <!-- Logo and App Identity -->
       <div class="p-4 border-b border-slate-200/70 flex flex-col gap-2 relative" data-stitch-orig-opacity="1">
-        <div class="flex items-center justify-end w-full" id="sidebar-header-controls">
+        <div class="flex items-center justify-between lg:justify-end w-full" id="sidebar-header-controls">
+          <span class="lg:hidden text-xs font-bold text-slate-600 uppercase tracking-wider">Menú</span>
+          <!-- Mobile Close Button -->
+          <button type="button" onclick="toggleMobileSidebar(false)" aria-label="Cerrar menú"
+            class="lg:hidden p-1.5 rounded-lg text-slate-700 hover:bg-slate-200/80 focus:outline-none cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          <!-- Desktop Toggle Button -->
           <button type="button" id="sidebar-toggle-btn" aria-expanded="true" aria-controls="sidebar-nav-container"
             aria-label="Alternar menú principal"
-            class="p-2 rounded-lg text-slate-800 hover:bg-slate-200/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 transition-colors cursor-pointer flex items-center justify-center">
+            class="hidden lg:flex p-2 rounded-lg text-slate-800 hover:bg-slate-200/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 transition-colors cursor-pointer items-center justify-center">
             <svg class="w-5 h-5 flex-shrink-0" aria-hidden="true" focusable="false" fill="currentColor"
               viewBox="0 0 24 24">
               <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
@@ -247,6 +261,26 @@
       // Global sidebar toggle state handler
       window.sidebarExpanded = true;
 
+      function toggleMobileSidebar(forceState) {
+        const sidebar = document.getElementById('main-sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        if (!sidebar) return;
+
+        const isClosed = sidebar.classList.contains('-translate-x-full');
+        const shouldOpen = (typeof forceState === 'boolean') ? forceState : isClosed;
+
+        if (shouldOpen) {
+          sidebar.classList.remove('-translate-x-full');
+          sidebar.classList.add('translate-x-0');
+          if (backdrop) backdrop.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('-translate-x-full');
+          sidebar.classList.remove('translate-x-0');
+          if (backdrop) backdrop.classList.add('hidden');
+        }
+      }
+      window.toggleMobileSidebar = toggleMobileSidebar;
+
       function setSidebarState(expanded) {
         window.sidebarExpanded = expanded;
         const sidebar = document.getElementById('main-sidebar');
@@ -292,42 +326,43 @@
     <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
       <!-- BEGIN: Topbar Header -->
       <header
-        class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between flex-shrink-0 z-20 shadow-xs"
+        class="h-16 bg-white border-b border-slate-200 px-3 sm:px-6 flex items-center justify-between flex-shrink-0 z-20 shadow-xs"
         data-purpose="topbar-header" style="border-color: rgb(229, 226, 221);">
         <!-- Saludo Dinámico & Mobile menu trigger -->
-        <div class="flex items-center gap-3">
-          <button aria-label="Abrir menú" class="lg:hidden p-2 rounded-md text-slate-500 hover:bg-slate-100"
-            id="mobile-menu-btn">
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+          <button aria-label="Abrir menú" class="lg:hidden p-2 -ml-1 rounded-md text-slate-600 hover:bg-slate-100 focus:outline-none cursor-pointer flex-shrink-0"
+            id="mobile-menu-btn" onclick="toggleMobileSidebar(true)">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
             </svg>
           </button>
-          <div>
-            <h1 class="text-base sm:text-lg font-bold text-slate-800 leading-tight" id="user-greeting">Buen día, Carlos
-              Rodríguez (Administrador)</h1>
-            <p class="text-xs text-slate-500 font-medium" id="user-role-label">Rol activo: Administrador de SST</p>
+          <div class="min-w-0">
+            <h1 class="text-sm sm:text-base md:text-lg font-bold text-slate-800 leading-tight truncate max-w-[130px] xs:max-w-[170px] sm:max-w-none" id="user-greeting">Buen día, Carlos Rodríguez (Administrador)</h1>
+            <p class="text-[11px] sm:text-xs text-slate-500 font-medium truncate hidden sm:block" id="user-role-label">Rol activo: Administrador de SST</p>
           </div>
         </div>
         <!-- Role Switcher & Action Controls -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
           <!-- Segmented Role Switcher -->
           <div aria-label="Selector de Rol de Usuario"
-            class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-300" role="group">
+            class="flex items-center bg-slate-100 p-0.5 sm:p-1 rounded-lg border border-slate-300" role="group">
             <button aria-pressed="true"
-              class="px-3 py-1.5 text-xs font-bold rounded-md shadow-xs transition-colors bg-white text-brand-800 ring-1 ring-slate-200"
+              class="px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-md shadow-xs transition-colors bg-white text-brand-800 ring-1 ring-slate-200 cursor-pointer"
               id="role-admin-btn" onclick="requestRoleSwitch('admin')" type="button">
-              Administrador
+              <span class="hidden sm:inline">Administrador</span>
+              <span class="inline sm:hidden">Admin</span>
             </button>
             <button aria-pressed="false"
-              class="px-3 py-1.5 text-xs font-bold rounded-md transition-colors text-slate-700 hover:text-slate-950"
+              class="px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-md transition-colors text-slate-700 hover:text-slate-950 cursor-pointer"
               id="role-employee-btn" onclick="requestRoleSwitch('employee')" type="button">
-              Empleado
+              <span class="hidden sm:inline">Empleado</span>
+              <span class="inline sm:hidden">Emp</span>
             </button>
           </div>
           <!-- Notification Bell with Dropdown Preview -->
           <div class="relative" data-purpose="notifications-center">
             <button aria-label="Ver 2 notificaciones nuevas"
-              class="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full relative"
+              class="p-1.5 sm:p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full relative cursor-pointer"
               id="notif-toggle-btn" onclick="toggleNotifications()">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -364,14 +399,14 @@
             </div>
           </div>
           <!-- User Profile Avatar Pill -->
-          <div class="flex items-center gap-2 border-l border-slate-200 pl-3 cursor-pointer group"
+          <div class="flex items-center gap-2 border-l border-slate-200 pl-2 sm:pl-3 cursor-pointer group"
             onclick="navigateToView('perfil')" title="Ver mi Perfil de Usuario">
             <div class="relative">
               <div
-                class="w-9 h-9 rounded-full bg-brand-700 text-white font-bold text-xs flex items-center justify-center border-2 border-white shadow-sm group-hover:ring-2 group-hover:ring-brand-700 transition-all"
+                class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-700 text-white font-bold text-xs flex items-center justify-center border-2 border-white shadow-sm group-hover:ring-2 group-hover:ring-brand-700 transition-all"
                 id="user-avatar">CR</div>
               <span
-                class="bottom-0 right-0 absolute w-2.5 h-2.5 bg-emerald-600 border-2 border-white rounded-full"></span>
+                class="bottom-0 right-0 absolute w-2 h-2 sm:w-2.5 sm:h-2.5 bg-emerald-600 border-2 border-white rounded-full"></span>
             </div>
             <div class="hidden md:flex flex-col text-left">
               <span class="text-xs font-bold text-slate-900 group-hover:text-brand-800 transition-colors"
@@ -395,7 +430,7 @@
         <section class="space-y-6" data-purpose="view-landing" id="view-landing">
           <!-- Hero Banner with Subtle Logo Watermark, Dynamic Typewriter and Material 3 Container -->
           <div
-            class="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm p-6 sm:p-10 lg:p-12 min-h-[460px] flex flex-col justify-between">
+            class="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm p-4 sm:p-8 lg:p-12 min-h-[460px] flex flex-col justify-between">
 
             <!-- Top Badge & Quick Context -->
             <div class="relative z-10 flex flex-wrap items-center justify-between gap-3">
@@ -427,9 +462,9 @@
               </p>
 
               <!-- Quick Action Buttons Material 3 -->
-              <div class="flex flex-wrap items-center gap-3 mt-6">
+              <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 mt-6">
                 <button onclick="navigateToView('dashboard')"
-                  class="px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold shadow-sm transition-all transform active:scale-95 flex items-center gap-2">
+                  class="px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
@@ -438,14 +473,14 @@
                   Ingresar al Dashboard
                 </button>
                 <button onclick="navigateToView('autorreporte'); openReportModal();"
-                  class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-800 text-xs font-bold transition-all flex items-center gap-2">
+                  class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-800 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer">
                   <svg class="w-4 h-4 text-brand-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                   </svg>
                   Radicar Autorreporte
                 </button>
                 <button onclick="navigateToView('perfil')"
-                  class="px-4 py-2.5 rounded-xl border border-transparent hover:border-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5">
+                  class="px-4 py-2.5 rounded-xl border border-transparent hover:border-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer">
                   Ver mi Perfil de Empleado &rarr;
                 </button>
               </div>
@@ -1033,29 +1068,29 @@
                 </div>
               </div>
               <!-- Filters & Month Selection -->
-              <div class="flex flex-wrap items-center gap-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
                 <!-- Event Category Filter -->
-                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs">
-                  <span class="text-slate-500 px-2 font-medium">Filtrar:</span>
-                  <button class="px-2.5 py-1 rounded bg-white font-medium text-slate-800 shadow-xs"
+                <div class="flex items-center bg-slate-100 rounded-lg p-1 text-xs overflow-x-auto max-w-full">
+                  <span class="text-slate-500 px-2 font-medium flex-shrink-0">Filtrar:</span>
+                  <button class="px-2.5 py-1 rounded bg-white font-bold text-slate-800 shadow-xs flex-shrink-0 cursor-pointer"
                     onclick="filterCalendar('all', this)" type="button">Todos</button>
-                  <button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium"
+                  <button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium flex-shrink-0 cursor-pointer"
                     onclick="filterCalendar('copasst', this)" type="button">COPASST</button>
-                  <button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium"
+                  <button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium flex-shrink-0 cursor-pointer"
                     onclick="filterCalendar('capacitacion', this)" type="button">Capacitaciones</button>
                 </div>
                 <!-- Month Selector -->
-                <div class="flex items-center gap-1 bg-white border border-slate-200 rounded-lg p-0.5">
+                <div class="flex items-center justify-between sm:justify-start gap-1 bg-white border border-slate-200 rounded-lg p-0.5">
                   <button aria-label="Mes anterior" onclick="changeCalendarMonth(-1)"
-                    class="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded transition-colors"
+                    class="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded transition-colors cursor-pointer"
                     title="Mes Anterior">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                     </svg>
                   </button>
-                  <span class="text-xs font-bold px-2 text-slate-800" id="calendar-month-label">Mayo 2025</span>
+                  <span class="text-xs font-bold px-2 text-slate-800 min-w-[90px] text-center" id="calendar-month-label">Mayo 2025</span>
                   <button aria-label="Mes siguiente" onclick="changeCalendarMonth(1)"
-                    class="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded transition-colors"
+                    class="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded transition-colors cursor-pointer"
                     title="Mes Siguiente">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -1064,22 +1099,22 @@
                 </div>
               </div>
             </div>
-            <!-- Calendar Grid -->
-            <div class="p-4 overflow-x-auto">
-              <div class="min-w-[700px]">
+            <!-- Calendar Grid (Fully responsive across 7 days on mobile & desktop) -->
+            <div class="p-2 sm:p-4 md:p-5">
+              <div class="w-full">
                 <!-- Day Names Header -->
                 <div
-                  class="grid grid-cols-7 gap-px mb-2 text-center text-xs font-bold uppercase tracking-wider text-slate-400">
-                  <div class="py-2">Lun</div>
-                  <div class="py-2">Mar</div>
-                  <div class="py-2">Mié</div>
-                  <div class="py-2">Jue</div>
-                  <div class="py-2">Vie</div>
-                  <div class="py-2">Sáb</div>
-                  <div class="py-2">Dom</div>
+                  class="grid grid-cols-7 gap-1 sm:gap-2 mb-2 text-center text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <div class="py-1.5 sm:py-2">Lun</div>
+                  <div class="py-1.5 sm:py-2">Mar</div>
+                  <div class="py-1.5 sm:py-2">Mié</div>
+                  <div class="py-1.5 sm:py-2">Jue</div>
+                  <div class="py-1.5 sm:py-2">Vie</div>
+                  <div class="py-1.5 sm:py-2 text-slate-400/80">Sáb</div>
+                  <div class="py-1.5 sm:py-2 text-slate-400/80">Dom</div>
                 </div>
                 <!-- Calendar Days (Simulated 5-week month) -->
-                <div class="grid grid-cols-7 gap-2" id="calendar-days-container">
+                <div class="grid grid-cols-7 gap-1 sm:gap-2" id="calendar-days-container">
                   <div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>
                   <div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>
                   <div class="h-28 rounded-lg bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>
@@ -1456,16 +1491,16 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Selected Day Activity Details Card -->
+              <div id="calendar-day-detail-panel" class="mt-4 p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200 transition-all"></div>
             </div>
             <!-- Calendar Legend -->
-            <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center gap-4 text-xs">
+            <div class="px-4 sm:px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center gap-3 text-xs">
               <span class="text-slate-500 font-medium">Convenciones:</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span> Reunión
-                COPASST</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                Capacitación / Taller</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
-                Inspección de Seguridad</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span> COPASST</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Capacitación</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span> Inspección</span>
             </div>
           </div>
         </section>
@@ -3342,6 +3377,8 @@
       selectedActaId: 1,
       calendarMonth: 4, // 0-indexed (4 = Mayo)
       calendarYear: 2025,
+      selectedCalendarDay: 14,
+      calendarFilter: 'all',
       typewriterInterval: null
     };
 
@@ -3380,14 +3417,6 @@
 
       // Ensure landing page is active at start
       navigateToView('landing');
-
-      // Mobile sidebar trigger
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      if (mobileBtn) {
-        mobileBtn.addEventListener('click', () => {
-          document.getElementById('main-sidebar').classList.toggle('-translate-x-full');
-        });
-      }
     });
 
     /* =========================================================================
@@ -3575,14 +3604,14 @@
       const employeeBtn = document.getElementById('role-employee-btn');
 
       if (newRole === 'admin') {
-        adminBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md shadow-xs bg-white text-brand-800 ring-1 ring-slate-200 transition-colors";
+        adminBtn.className = "px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-md shadow-xs bg-white text-brand-800 ring-1 ring-slate-200 transition-colors cursor-pointer";
         adminBtn.setAttribute('aria-pressed', 'true');
-        employeeBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md text-slate-700 hover:text-slate-950 transition-colors";
+        employeeBtn.className = "px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-md text-slate-700 hover:text-slate-950 transition-colors cursor-pointer";
         employeeBtn.setAttribute('aria-pressed', 'false');
       } else {
-        employeeBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md shadow-xs bg-white text-brand-800 ring-1 ring-slate-200 transition-colors";
+        employeeBtn.className = "px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-md shadow-xs bg-white text-brand-800 ring-1 ring-slate-200 transition-colors cursor-pointer";
         employeeBtn.setAttribute('aria-pressed', 'true');
-        adminBtn.className = "px-3 py-1.5 text-xs font-bold rounded-md text-slate-700 hover:text-slate-950 transition-colors";
+        adminBtn.className = "px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-md text-slate-700 hover:text-slate-950 transition-colors cursor-pointer";
         adminBtn.setAttribute('aria-pressed', 'false');
       }
 
@@ -3717,6 +3746,9 @@
     }
 
     function navigateToView(viewId) {
+      if (typeof toggleMobileSidebar === 'function') {
+        toggleMobileSidebar(false);
+      }
       state.currentView = viewId;
       const views = ['landing', 'dashboard', 'perfil', 'empleados', 'reuniones', 'actas', 'capacitaciones', 'autorreporte'];
       views.forEach(v => {
@@ -3741,7 +3773,7 @@
     }
 
     /* =========================================================================
-     * CALENDAR & MONTH CONTROLS
+     * CALENDAR & MONTH CONTROLS (RESPONSIVE FOR MOBILE & DESKTOP)
      * ========================================================================= */
     const monthNames = [
       'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -3762,10 +3794,22 @@
       if (label) {
         label.innerText = `${monthNames[state.calendarMonth]} ${state.calendarYear}`;
       }
-      renderCalendarDays();
+      state.selectedCalendarDay = 1;
+      renderCalendarDays(state.calendarFilter || 'all');
     }
 
-    function renderCalendarDays(filter = 'all') {
+    function selectCalendarDay(day) {
+      state.selectedCalendarDay = day;
+      renderCalendarDays(state.calendarFilter || 'all');
+    }
+
+    function renderCalendarDays(filter) {
+      if (filter !== undefined) {
+        state.calendarFilter = filter;
+      } else {
+        filter = state.calendarFilter || 'all';
+      }
+
       const container = document.getElementById('calendar-days-container');
       if (!container) return;
 
@@ -3777,48 +3821,170 @@
       const offsetDays = (firstDayOfMonth + 6) % 7;
       const totalDays = new Date(year, month + 1, 0).getDate();
 
+      // Empty offset cells
       for (let i = 0; i < offsetDays; i++) {
-        html += `<div class="h-28 rounded-xl bg-slate-50/50 border border-slate-100 p-2 opacity-40"></div>`;
+        html += `<div class="min-h-[50px] sm:min-h-[80px] md:h-28 rounded-lg sm:rounded-xl bg-slate-50/40 border border-slate-100 p-1 sm:p-2 opacity-30 pointer-events-none"></div>`;
       }
 
       for (let day = 1; day <= totalDays; day++) {
         const event = dbMock.calendarEvents.find(e => e.day === day && e.month === (month + 1));
-        let eventBadge = '';
+        const hasEvent = event && (filter === 'all' || filter === event.type);
 
-        if (event && (filter === 'all' || filter === event.type)) {
-          let colorClass = 'bg-brand-700 text-white';
-          if (event.type === 'capacitacion') colorClass = 'bg-amber-600 text-white';
-          if (event.type === 'inspeccion') colorClass = 'bg-purple-700 text-white';
-
-          eventBadge = `
-            <div onclick="showDayEvent(${day}, '${event.title}', '${event.label}')" class="mt-1 p-1 rounded-lg ${colorClass} text-[10px] font-bold truncate cursor-pointer hover:opacity-90 shadow-xs" title="${event.title}">
-              ${event.title}
-            </div>
-          `;
+        let colorBg = 'bg-teal-600 text-white';
+        let colorDot = 'bg-teal-600';
+        if (event) {
+          if (event.type === 'capacitacion') {
+            colorBg = 'bg-amber-600 text-white';
+            colorDot = 'bg-amber-500';
+          } else if (event.type === 'inspeccion') {
+            colorBg = 'bg-purple-700 text-white';
+            colorDot = 'bg-purple-600';
+          } else {
+            colorBg = 'bg-teal-700 text-white';
+            colorDot = 'bg-teal-600';
+          }
         }
 
         const isToday = (day === 14 && month === 4 && year === 2025);
+        const isSelected = (state.selectedCalendarDay === day);
+
+        let borderClass = 'border-slate-200 bg-white hover:border-brand-400';
+        if (isSelected) {
+          borderClass = 'border-brand-700 bg-teal-50/50 ring-2 ring-brand-700 shadow-xs';
+        } else if (isToday) {
+          borderClass = 'border-brand-500 bg-teal-50/20 ring-1 ring-brand-500';
+        }
+
+        let dayBadgeClass = 'text-slate-700 text-xs sm:text-sm font-semibold sm:font-bold';
+        if (isToday) {
+          dayBadgeClass = 'text-white bg-brand-700 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center font-bold text-[10px] sm:text-xs shadow-xs';
+        } else if (isSelected) {
+          dayBadgeClass = 'text-brand-900 font-extrabold text-xs sm:text-sm';
+        }
+
         html += `
-          <div class="h-28 rounded-xl border ${isToday ? 'border-brand-700 bg-teal-50/40 ring-2 ring-brand-700' : 'border-slate-200 bg-white'} p-2 flex flex-col justify-between hover:shadow-xs transition-shadow">
+          <div 
+            onclick="selectCalendarDay(${day})"
+            class="min-h-[50px] sm:min-h-[80px] md:h-28 rounded-lg sm:rounded-xl border ${borderClass} p-1 sm:p-2 flex flex-col justify-between cursor-pointer transition-all active:scale-95"
+            title="Día ${day} de ${monthNames[month]}"
+          >
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold ${isToday ? 'text-brand-900 bg-brand-100 w-5 h-5 rounded-full flex items-center justify-center' : 'text-slate-700'}">${day}</span>
-              ${isToday ? '<span class="text-[9px] font-bold text-brand-800 uppercase tracking-wider">Hoy</span>' : ''}
+              <span class="${dayBadgeClass}">${day}</span>
+              ${isToday ? '<span class="hidden sm:inline text-[9px] font-bold text-brand-800 uppercase tracking-wider">Hoy</span>' : ''}
+              ${hasEvent ? `<span class="sm:hidden w-2 h-2 rounded-full ${colorDot} flex-shrink-0" title="${event.title}"></span>` : ''}
             </div>
-            <div class="flex-1 overflow-hidden mt-1">
-              ${eventBadge}
+
+            <!-- Desktop Event Badge -->
+            <div class="hidden sm:block flex-1 overflow-hidden mt-1">
+              ${hasEvent ? `
+                <div class="mt-1 p-1 rounded-md sm:rounded-lg ${colorBg} text-[10px] font-bold truncate shadow-xs hover:opacity-90 transition-opacity" title="${event.title}">
+                  ${event.title}
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Mobile Category Indicator text -->
+            <div class="sm:hidden flex items-center justify-center mt-auto">
+              ${hasEvent ? `<span class="text-[8px] font-bold text-slate-500 truncate max-w-full leading-none">${event.label}</span>` : ''}
             </div>
           </div>
         `;
       }
+
       container.innerHTML = html;
+      renderCalendarDayDetail();
+    }
+
+    function renderCalendarDayDetail() {
+      const detailContainer = document.getElementById('calendar-day-detail-panel');
+      if (!detailContainer) return;
+
+      const selectedDay = state.selectedCalendarDay || 14;
+      const month = state.calendarMonth;
+      const year = state.calendarYear;
+      const monthName = monthNames[month];
+
+      const event = dbMock.calendarEvents.find(e => e.day === selectedDay && e.month === (month + 1));
+      const isToday = (selectedDay === 14 && month === 4 && year === 2025);
+
+      if (event) {
+        let badgeColor = 'bg-teal-100 text-teal-800 border-teal-200';
+        let actionBtnColor = 'bg-teal-700 hover:bg-teal-800 text-white';
+        let iconSvg = `
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        `;
+
+        if (event.type === 'capacitacion') {
+          badgeColor = 'bg-amber-100 text-amber-800 border-amber-200';
+          actionBtnColor = 'bg-amber-600 hover:bg-amber-700 text-white';
+          iconSvg = `
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          `;
+        } else if (event.type === 'inspeccion') {
+          badgeColor = 'bg-purple-100 text-purple-800 border-purple-200';
+          actionBtnColor = 'bg-purple-700 hover:bg-purple-800 text-white';
+          iconSvg = `
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          `;
+        }
+
+        detailContainer.innerHTML = `
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <div class="w-11 h-11 rounded-xl bg-white border border-slate-200 flex flex-col items-center justify-center flex-shrink-0 shadow-xs">
+                <span class="text-[9px] uppercase font-bold text-slate-500 leading-none">${monthName.slice(0, 3)}</span>
+                <span class="text-sm font-extrabold text-slate-900 leading-tight">${selectedDay}</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border ${badgeColor}">
+                    ${iconSvg}
+                    ${event.label}
+                  </span>
+                  ${isToday ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-100 text-brand-800 border border-brand-200">Hoy</span>' : ''}
+                </div>
+                <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">${event.title}</h4>
+                <p class="text-[11px] text-slate-500 mt-0.5">Asistencia obligatoria • Registro de quórum SG-SST • Sala 3 y Remoto</p>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              onclick="showDayEvent(${selectedDay}, '${event.title}', '${event.label}')"
+              class="w-full sm:w-auto px-3.5 py-1.5 rounded-lg ${actionBtnColor} text-xs font-bold shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              Ver Detalle
+            </button>
+          </div>
+        `;
+      } else {
+        detailContainer.innerHTML = `
+          <div class="flex items-center justify-between text-xs text-slate-500">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center flex-shrink-0">
+                <span class="text-[9px] uppercase font-bold text-slate-400 leading-none">${monthName.slice(0, 3)}</span>
+                <span class="text-xs font-bold text-slate-700 leading-tight">${selectedDay}</span>
+              </div>
+              <span class="text-xs text-slate-600">${selectedDay} de ${monthName}, ${year} ${isToday ? '<b>(Hoy)</b>' : ''} — Sin actividades programadas.</span>
+            </div>
+            <span class="text-[11px] text-slate-400 hidden sm:inline">Toca un día marcado para ver detalles</span>
+          </div>
+        `;
+      }
     }
 
     function filterCalendar(category, btnElement) {
+      state.calendarFilter = category;
       const parent = btnElement.parentElement;
       Array.from(parent.querySelectorAll('button')).forEach(b => {
-        b.className = "px-2.5 py-1 rounded-lg text-slate-700 hover:text-slate-950 font-semibold";
+        b.className = "px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 font-medium flex-shrink-0 cursor-pointer";
       });
-      btnElement.className = "px-2.5 py-1 rounded-lg bg-white font-bold text-slate-900 shadow-xs ring-1 ring-slate-200";
+      btnElement.className = "px-2.5 py-1 rounded bg-white font-bold text-slate-800 shadow-xs flex-shrink-0 cursor-pointer";
       renderCalendarDays(category);
     }
 
