@@ -125,7 +125,6 @@
     textarea:focus-visible {
       outline: 2px solid #0F766E;
       outline-offset: 2px;
-      outline-offset: 2px;
     }
 
     .badge-status {
@@ -137,6 +136,230 @@
       font-weight: 600;
       line-height: 1rem;
     }
+
+    /* =========================================================================
+     * WCAG 2.2 NIVEL AA & NTC 5854 - ESTILOS DE ACCESIBILIDAD
+     * ========================================================================= */
+    /* Resaltado de foco de navegación por teclado */
+    html.a11y-focus-visible *:focus,
+    html.a11y-focus-visible *:focus-visible {
+      outline: 3.5px solid #2563EB !important;
+      outline-offset: 3px !important;
+      box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.45) !important;
+    }
+
+    /* Modo Escala de Grises / Monocromo */
+    html.a11y-grayscale {
+      filter: grayscale(100%) !important;
+    }
+
+    /* Reducción de movimiento */
+    html.a11y-reduce-motion *,
+    html.a11y-reduce-motion *::before,
+    html.a11y-reduce-motion *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* Tipografía hiperlegible (Dislexia / Lectura Fácil) */
+    html.a11y-dyslexic-font,
+    html.a11y-dyslexic-font body,
+    html.a11y-dyslexic-font * {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: 0.035em !important;
+      line-height: 1.65 !important;
+    }
+
+    /* =========================================================================
+     * MODO ALTO CONTRASTE OSCURO (WCAG AAA - Ratio > 7:1)
+     * Fondo negro (#000000), textos blanco/amarillo (#FFFFFF / #FFFF00)
+     * ========================================================================= */
+    html.a11y-contrast-dark,
+    html.a11y-contrast-dark body,
+    html.a11y-contrast-dark #main-sidebar,
+    html.a11y-contrast-dark #main-content-viewport,
+    html.a11y-contrast-dark header[data-purpose="topbar-header"] {
+      background-color: #000000 !important;
+      color: #FFFFFF !important;
+    }
+
+    html.a11y-contrast-dark #main-sidebar {
+      border-right: 2px solid #FFFF00 !important;
+    }
+
+    html.a11y-contrast-dark header[data-purpose="topbar-header"] {
+      border-bottom: 2px solid #FFFF00 !important;
+    }
+
+    html.a11y-contrast-dark #sidebar-header-controls,
+    html.a11y-contrast-dark #sidebar-footer {
+      border-color: #FFFF00 !important;
+    }
+
+    html.a11y-contrast-dark #sidebar-logo-wrapper img {
+      filter: brightness(0) invert(1) drop-shadow(0 0 4px #FFFF00) !important;
+      mix-blend-mode: normal !important;
+    }
+
+    /* Cards, Surfaces y Contenedores en Contraste Oscuro */
+    html.a11y-contrast-dark .m3-surface,
+    html.a11y-contrast-dark .m3-card,
+    html.a11y-contrast-dark .bg-white,
+    html.a11y-contrast-dark .bg-slate-50,
+    html.a11y-contrast-dark .bg-slate-100,
+    html.a11y-contrast-dark .bg-slate-200,
+    html.a11y-contrast-dark .bg-amber-50,
+    html.a11y-contrast-dark .bg-emerald-50,
+    html.a11y-contrast-dark .bg-teal-50,
+    html.a11y-contrast-dark .bg-rose-50,
+    html.a11y-contrast-dark .bg-blue-50 {
+      background-color: #0c0c0c !important;
+      border: 1.5px solid #FFFF00 !important;
+      color: #FFFFFF !important;
+      box-shadow: none !important;
+    }
+
+    /* Textos y Encabezados en Contraste Oscuro */
+    html.a11y-contrast-dark h1,
+    html.a11y-contrast-dark h2,
+    html.a11y-contrast-dark h3,
+    html.a11y-contrast-dark h4,
+    html.a11y-contrast-dark h5,
+    html.a11y-contrast-dark h6,
+    html.a11y-contrast-dark .text-slate-950,
+    html.a11y-contrast-dark .text-slate-900,
+    html.a11y-contrast-dark .text-slate-800,
+    html.a11y-contrast-dark .text-brand-900,
+    html.a11y-contrast-dark .text-brand-800 {
+      color: #FFFF00 !important;
+    }
+
+    html.a11y-contrast-dark p,
+    html.a11y-contrast-dark span,
+    html.a11y-contrast-dark .text-slate-700,
+    html.a11y-contrast-dark .text-slate-600,
+    html.a11y-contrast-dark .text-slate-500,
+    html.a11y-contrast-dark .text-slate-400 {
+      color: #FFFFFF !important;
+    }
+
+    /* Enlaces en Contraste Oscuro (Cian de alto contraste) */
+    html.a11y-contrast-dark a,
+    html.a11y-contrast-dark .text-brand-700,
+    html.a11y-contrast-dark .text-brand-600 {
+      color: #00FFFF !important;
+      text-decoration: underline !important;
+    }
+
+    /* Botones primarios en Contraste Oscuro */
+    html.a11y-contrast-dark .bg-brand-600,
+    html.a11y-contrast-dark .bg-brand-700,
+    html.a11y-contrast-dark .bg-brand-800,
+    html.a11y-contrast-dark .bg-brand-900 {
+      background-color: #FFFF00 !important;
+      color: #000000 !important;
+      border: 2px solid #FFFFFF !important;
+      font-weight: 800 !important;
+    }
+
+    /* Inputs en Contraste Oscuro */
+    html.a11y-contrast-dark input,
+    html.a11y-contrast-dark select,
+    html.a11y-contrast-dark textarea {
+      background-color: #000000 !important;
+      color: #FFFFFF !important;
+      border: 2px solid #FFFF00 !important;
+    }
+
+    /* Badges en Contraste Oscuro */
+    html.a11y-contrast-dark .badge-status,
+    html.a11y-contrast-dark span.rounded-full {
+      background-color: #000000 !important;
+      border: 1.5px solid #FFFF00 !important;
+      color: #FFFF00 !important;
+    }
+
+    /* Focus en modo alto contraste oscuro */
+    html.a11y-contrast-dark.a11y-focus-visible *:focus,
+    html.a11y-contrast-dark.a11y-focus-visible *:focus-visible {
+      outline: 3.5px solid #FFFF00 !important;
+      outline-offset: 3px !important;
+      box-shadow: 0 0 0 6px rgba(255, 255, 0, 0.6) !important;
+    }
+
+    /* Sidebar items en Contraste Oscuro */
+    html.a11y-contrast-dark .nav-item {
+      color: #FFFFFF !important;
+      border: 1px solid transparent !important;
+    }
+    html.a11y-contrast-dark .nav-item[aria-current="page"] {
+      background-color: #FFFF00 !important;
+      color: #000000 !important;
+      border: 2px solid #FFFFFF !important;
+      font-weight: bold !important;
+    }
+    html.a11y-contrast-dark .nav-item[aria-current="page"] * {
+      color: #000000 !important;
+    }
+
+    /* Modales en Contraste Oscuro */
+    html.a11y-contrast-dark [role="dialog"] > div {
+      background-color: #000000 !important;
+      border: 2px solid #FFFF00 !important;
+      color: #FFFFFF !important;
+    }
+
+    /* =========================================================================
+     * MODO ALTO CONTRASTE CLARO (Blanco y Negro puro)
+     * ========================================================================= */
+    html.a11y-contrast-light,
+    html.a11y-contrast-light body,
+    html.a11y-contrast-light #main-sidebar,
+    html.a11y-contrast-light #main-content-viewport,
+    html.a11y-contrast-light header[data-purpose="topbar-header"],
+    html.a11y-contrast-light .m3-surface,
+    html.a11y-contrast-light .m3-card,
+    html.a11y-contrast-light .bg-white,
+    html.a11y-contrast-light .bg-slate-50,
+    html.a11y-contrast-light .bg-slate-100 {
+      background-color: #FFFFFF !important;
+      color: #000000 !important;
+      border-color: #000000 !important;
+    }
+
+    html.a11y-contrast-light * {
+      color: #000000 !important;
+    }
+
+    html.a11y-contrast-light .bg-brand-600,
+    html.a11y-contrast-light .bg-brand-700,
+    html.a11y-contrast-light .bg-brand-800 {
+      background-color: #000000 !important;
+      color: #FFFFFF !important;
+    }
+    html.a11y-contrast-light .bg-brand-600 *,
+    html.a11y-contrast-light .bg-brand-700 *,
+    html.a11y-contrast-light .bg-brand-800 * {
+      color: #FFFFFF !important;
+    }
+
+    html.a11y-contrast-light input,
+    html.a11y-contrast-light select,
+    html.a11y-contrast-light textarea {
+      border: 2px solid #000000 !important;
+      background-color: #FFFFFF !important;
+      color: #000000 !important;
+    }
+
+    html.a11y-contrast-light .nav-item[aria-current="page"] {
+      background-color: #000000 !important;
+      color: #FFFFFF !important;
+    }
+    html.a11y-contrast-light .nav-item[aria-current="page"] * {
+      color: #FFFFFF !important;
+    }
   </style>
   <!-- END: Custom Styling for Layout and Transitions -->
 </head>
@@ -144,6 +367,13 @@
 <body
   class="h-full text-slate-800 antialiased font-sans flex flex-col bg-slate-100 selection:bg-brand-500 selection:text-white"
   style="font-family: 'Ancizar Serif', Georgia, serif; background-color: #F8F9FA;">
+  <!-- Skip Link for Keyboard Accessibility (WCAG 2.4.1 Bypass Blocks & NTC 5854) -->
+  <a href="#main-content-viewport"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[99999] focus:px-4 focus:py-2.5 focus:bg-brand-800 focus:text-white focus:font-bold focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-4 focus:ring-amber-400">
+    Saltar al contenido principal (Alt + C)
+  </a>
+  <!-- ARIA Live Region for Screen Reader Dynamic Announcements (WCAG 4.1.3 & NTC 5854) -->
+  <div id="a11y-live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
   <!-- BEGIN: Application Shell -->
   <div class="flex h-screen overflow-hidden" data-purpose="app-shell">
     <!-- BEGIN: Sidebar Navigation -->
@@ -254,7 +484,35 @@
         </button>
       </nav>
 
-      <!-- Sidebar Footer / Legal Compliance Badge -->
+      <!-- BEGIN: Sidebar Footer / Accessibility & Inclusion (WCAG 2.2 & NTC 5854) -->
+      <div id="sidebar-footer" class="p-3 border-t border-slate-200/80 bg-inherit flex flex-col gap-2 flex-shrink-0" data-purpose="sidebar-a11y-footer">
+        <button type="button"
+          id="btn-accessibility-trigger"
+          onclick="openAccessibilityModal()"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="modal-accessibility"
+          title="Herramientas de Accesibilidad (WCAG 2.2 / NTC 5854) - Atajo: Alt + A"
+          aria-label="Abrir panel de opciones de accesibilidad (WCAG 2.2 y NTC 5854)"
+          class="w-full flex items-center justify-start gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-800 hover:bg-slate-200/80 hover:text-slate-950 transition-all cursor-pointer border border-slate-300/80 shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 bg-white/70 active:scale-[0.98]">
+          <span class="flex items-center justify-center w-6 h-6 rounded-lg bg-brand-700 text-white flex-shrink-0 shadow-xs" aria-hidden="true">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10.59,5.41Q10,4.82 10,4q0-0.83 0.59-1.41T12,2t1.41,0.59T14,4q0,0.82-0.59,1.41T12,6T10.59,5.41ZM9,22V9H3V7H21V9H15V22H13V16H11v6H9Z"/>
+            </svg>
+          </span>
+          <div class="sidebar-label flex-1 flex items-center justify-between min-w-0">
+            <span class="truncate font-bold text-slate-900">Accesibilidad</span>
+            <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase tracking-wider">AA</span>
+          </div>
+        </button>
+        <div class="sidebar-label flex items-center justify-center gap-1.5 text-[10px] text-slate-500 font-medium">
+          <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>WCAG 2.2 • NTC 5854</span>
+        </div>
+      </div>
+      <!-- END: Sidebar Footer / Accessibility & Inclusion -->
     </aside>
 
     <script>
@@ -288,6 +546,7 @@
         const headerControls = document.getElementById('sidebar-header-controls');
         const logoWrapper = document.getElementById('sidebar-logo-wrapper');
         const sidebarFooter = document.getElementById('sidebar-footer');
+        const a11yBtn = document.getElementById('btn-accessibility-trigger');
 
         if (!sidebar || !toggleBtn) return;
 
@@ -303,7 +562,18 @@
           headerControls.classList.toggle('justify-center', !expanded);
         }
         if (logoWrapper) logoWrapper.classList.toggle('hidden', !expanded);
-        if (sidebarFooter) sidebarFooter.classList.toggle('hidden', !expanded);
+        
+        if (sidebarFooter) {
+          const labels = sidebarFooter.querySelectorAll('.sidebar-label');
+          labels.forEach(el => el.classList.toggle('hidden', !expanded));
+          if (a11yBtn) {
+            a11yBtn.classList.toggle('justify-start', expanded);
+            a11yBtn.classList.toggle('gap-3', expanded);
+            a11yBtn.classList.toggle('justify-center', !expanded);
+            a11yBtn.classList.toggle('px-3', expanded);
+            a11yBtn.classList.toggle('px-1.5', !expanded);
+          }
+        }
 
         // Call renderNavigation so all active and inactive nav buttons update classes cleanly
         if (typeof renderNavigation === 'function') {
@@ -2538,6 +2808,283 @@
     <!-- END: Main Content Area -->
   </div>
   <!-- END: Application Shell -->
+
+  <!-- ================================================================= -->
+  <!-- BEGIN: MODAL - HERRAMIENTAS DE ACCESIBILIDAD (WCAG 2.2 & NTC 5854)-->
+  <!-- ================================================================= -->
+  <div id="modal-accessibility" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-a11y-title" 
+    aria-describedby="modal-a11y-desc"
+    class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-[100] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden my-6 transform transition-all flex flex-col max-h-[92vh]">
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center shadow-sm flex-shrink-0">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.59,5.41Q10,4.82 10,4q0-0.83 0.59-1.41T12,2t1.41,0.59T14,4q0,0.82-0.59,1.41T12,6T10.59,5.41ZM9,22V9H3V7H21V9H15V22H13V16H11v6H9Z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 class="text-base sm:text-lg font-bold text-slate-900" id="modal-a11y-title">Accesibilidad e Inclusión</h2>
+              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">WCAG 2.2 AA</span>
+              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-300">NTC 5854</span>
+            </div>
+            <p class="text-xs text-slate-600 mt-0.5" id="modal-a11y-desc">Ajuste de preferencias visuales, motoras y cognitivas para la plataforma SG-SST.</p>
+          </div>
+        </div>
+        <button type="button" 
+          onclick="closeAccessibilityModal()" 
+          id="btn-close-a11y-modal"
+          aria-label="Cerrar panel de accesibilidad (Escape)"
+          class="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-200/70 rounded-xl transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable controls) -->
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-5 text-slate-800 flex-1">
+        
+        <!-- 1. AJUSTE DE TAMAÑO DE TEXTO (A+ / A-) -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-3 a11y-card">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-sm text-slate-900">Ajuste de tamaño de texto (A+ / A-)</span>
+                <span id="a11y-text-scale-badge" class="text-xs font-bold px-2 py-0.5 rounded bg-brand-100 text-brand-800 border border-brand-300">100% (Normal)</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-1">Permite cambiar el tamaño de las fuentes sin romper la maquetación ni la legibilidad de la interfaz (WCAG 1.4.4).</p>
+            </div>
+          </div>
+          <!-- Buttons and Scale Selector -->
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <button type="button" 
+              onclick="adjustFontSize(-10)" 
+              aria-label="Reducir tamaño de texto en 10%" 
+              title="Reducir fuente (A-)"
+              class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-slate-800 font-bold text-xs hover:bg-slate-100 hover:border-slate-400 transition-all shadow-xs cursor-pointer focus:ring-2 focus:ring-brand-700 flex items-center gap-1.5 active:scale-95">
+              <span class="text-sm">A−</span>
+              <span class="hidden sm:inline text-[11px] text-slate-500 font-normal">Reducir</span>
+            </button>
+            <button type="button" 
+              onclick="resetFontSize()" 
+              aria-label="Restablecer tamaño de texto predeterminado al 100%" 
+              title="Tamaño original 100%"
+              class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-slate-800 font-bold text-xs hover:bg-slate-100 hover:border-slate-400 transition-all shadow-xs cursor-pointer focus:ring-2 focus:ring-brand-700 flex items-center gap-1.5 active:scale-95">
+              <span class="text-sm">A</span>
+              <span class="hidden sm:inline text-[11px] text-slate-500 font-normal">100%</span>
+            </button>
+            <button type="button" 
+              onclick="adjustFontSize(10)" 
+              aria-label="Aumentar tamaño de texto en 10%" 
+              title="Aumentar fuente (A+)"
+              class="px-3.5 py-2 rounded-lg bg-white border border-slate-300 text-slate-800 font-bold text-xs hover:bg-slate-100 hover:border-slate-400 transition-all shadow-xs cursor-pointer focus:ring-2 focus:ring-brand-700 flex items-center gap-1.5 active:scale-95">
+              <span class="text-base leading-none">A+</span>
+              <span class="hidden sm:inline text-[11px] text-slate-500 font-normal">Aumentar</span>
+            </button>
+
+            <!-- Presets pills -->
+            <div class="flex items-center gap-1 ml-auto text-xs font-semibold">
+              <button type="button" onclick="setFontScale(0.9)" class="a11y-font-preset px-2.5 py-1.5 rounded border border-slate-200 text-slate-600 hover:bg-slate-200 transition-colors cursor-pointer" data-scale="0.9">90%</button>
+              <button type="button" onclick="setFontScale(1.0)" class="a11y-font-preset px-2.5 py-1.5 rounded border border-brand-500 bg-brand-50 text-brand-800 font-bold transition-colors cursor-pointer" data-scale="1.0">100%</button>
+              <button type="button" onclick="setFontScale(1.15)" class="a11y-font-preset px-2.5 py-1.5 rounded border border-slate-200 text-slate-600 hover:bg-slate-200 transition-colors cursor-pointer" data-scale="1.15">115%</button>
+              <button type="button" onclick="setFontScale(1.3)" class="a11y-font-preset px-2.5 py-1.5 rounded border border-slate-200 text-slate-600 hover:bg-slate-200 transition-colors cursor-pointer" data-scale="1.3">130%</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MODO DE ALTO CONTRASTE / TEMA OSCURO -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-3 a11y-card">
+          <div>
+            <span class="font-bold text-sm text-slate-900">Modo de alto contraste / Tema oscuro</span>
+            <p class="text-xs text-slate-600 mt-1">Alterna a paletas visuales de alto contraste (ej. fondo negro con texto blanco o amarillo) para personas con baja visión o daltonismo (WCAG 1.4.3 / 1.4.6).</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+            <!-- Normal -->
+            <button type="button" 
+              onclick="setContrastMode('default')" 
+              id="a11y-btn-contrast-default"
+              aria-pressed="true"
+              class="a11y-contrast-opt p-3 rounded-xl border-2 border-brand-600 bg-white text-left transition-all cursor-pointer flex flex-col gap-1 shadow-xs focus:ring-2 focus:ring-brand-700">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-slate-900">Estándar</span>
+                <span class="w-3 h-3 rounded-full bg-brand-600 a11y-contrast-check"></span>
+              </div>
+              <span class="text-[11px] text-slate-500">Paleta institucional Secure Place</span>
+            </button>
+            <!-- Alto contraste oscuro (Negro/Amarillo/Blanco) -->
+            <button type="button" 
+              onclick="setContrastMode('dark')" 
+              id="a11y-btn-contrast-dark"
+              aria-pressed="false"
+              class="a11y-contrast-opt p-3 rounded-xl border-2 border-slate-300 bg-black text-left transition-all cursor-pointer flex flex-col gap-1 shadow-xs hover:border-yellow-400 focus:ring-2 focus:ring-yellow-400">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-yellow-300">Contraste Oscuro</span>
+                <span class="w-3 h-3 rounded-full border border-yellow-300 hidden a11y-contrast-check bg-yellow-300"></span>
+              </div>
+              <span class="text-[11px] text-yellow-100 font-mono">Fondo Negro • Texto Amarillo/Blanco</span>
+            </button>
+            <!-- Alto contraste claro (Blanco/Negro puro) -->
+            <button type="button" 
+              onclick="setContrastMode('light')" 
+              id="a11y-btn-contrast-light"
+              aria-pressed="false"
+              class="a11y-contrast-opt p-3 rounded-xl border-2 border-slate-300 bg-white text-left transition-all cursor-pointer flex flex-col gap-1 shadow-xs hover:border-black focus:ring-2 focus:ring-black">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-black">Contraste Claro</span>
+                <span class="w-3 h-3 rounded-full border border-black hidden a11y-contrast-check bg-black"></span>
+              </div>
+              <span class="text-[11px] text-slate-800 font-mono">Fondo Blanco • Bordes y Texto Negro</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. RESALTADO DE FOCO DE NAVEGACIÓN POR TECLADO -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 flex items-center justify-between gap-4 a11y-card">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-slate-900">Resaltado de foco de navegación por teclado</span>
+              <span class="text-[10px] font-mono bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">Tab Key</span>
+            </div>
+            <p class="text-xs text-slate-600">Activa un marco o borde visible (<code class="bg-slate-200/80 px-1 py-0.5 rounded text-[11px]">focus outline</code>) para guiar a los usuarios que navegan únicamente mediante la tecla Tab (WCAG 2.4.7 y 2.4.13).</p>
+          </div>
+          <button type="button" 
+            role="switch" 
+            id="a11y-toggle-focus" 
+            aria-checked="false" 
+            onclick="toggleKeyboardFocusHighlight()" 
+            aria-label="Activar o desactivar resaltado de foco de navegación por teclado"
+            class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-700">
+            <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+          </button>
+        </div>
+
+        <!-- 4. COMPATIBILIDAD CON LECTORES DE PANTALLA (ETIQUETAS ARIA) -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-3 a11y-card">
+          <div class="flex items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-sm text-slate-900">Compatibilidad con lectores de pantalla (Etiquetas ARIA)</span>
+                <span class="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded">ARIA 1.2</span>
+              </div>
+              <p class="text-xs text-slate-600">Garantiza que los elementos interactivos e imágenes tengan descripciones de texto alternativas para tecnologías asistivas (NVDA, JAWS, VoiceOver, TalkBack).</p>
+            </div>
+            <button type="button" 
+              role="switch" 
+              id="a11y-toggle-screenreader" 
+              aria-checked="false" 
+              onclick="toggleScreenReaderAssistance()" 
+              aria-label="Activar lector de pantalla asistido con síntesis de voz y anuncios ARIA"
+              class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-700">
+              <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+            </button>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-2.5 text-xs text-emerald-900 flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>
+              <p class="font-bold">Región ARIA Live activa en vivo:</p>
+              <p class="text-[11px] text-emerald-800">Todos los diálogos, botones, formularios y tablas cuentan con roles semánticos y anuncios dinámicos en español.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. MODO ESCALA DE GRISES / MONOCROMO -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 flex items-center justify-between gap-4 a11y-card">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-slate-900">Modo escala de grises / Monocromo</span>
+              <span class="text-[10px] font-mono bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">Acromatopsia</span>
+            </div>
+            <p class="text-xs text-slate-600">Permite ajustar la saturación de los colores al 0% para usuarios que no perciben variaciones cromáticas o sufren de daltonismo severo.</p>
+          </div>
+          <button type="button" 
+            role="switch" 
+            id="a11y-toggle-grayscale" 
+            aria-checked="false" 
+            onclick="toggleGrayscaleMode()" 
+            aria-label="Activar o desactivar modo escala de grises / monocromo"
+            class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-700">
+            <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+          </button>
+        </div>
+
+        <!-- 6. REDUCCIÓN DE MOVIMIENTO -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 flex items-center justify-between gap-4 a11y-card">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-slate-900">Reducción de movimiento</span>
+              <span class="text-[10px] font-mono bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">Vestibular</span>
+            </div>
+            <p class="text-xs text-slate-600">Desactiva animaciones y transiciones automáticas para evitar distracciones o molestias en personas con discapacidad cognitiva o desórdenes vestibulares (WCAG 2.3.3).</p>
+          </div>
+          <button type="button" 
+            role="switch" 
+            id="a11y-toggle-motion" 
+            aria-checked="false" 
+            onclick="toggleReducedMotion()" 
+            aria-label="Activar o desactivar reducción de movimiento y animaciones"
+            class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-700">
+            <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+          </button>
+        </div>
+
+        <!-- BONUS EXTRA: TIPOGRAFÍA HIPERLEGIBLE / DISLEXIA -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 flex items-center justify-between gap-4 a11y-card">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-slate-900">Tipografía de lectura fácil (Dislexia)</span>
+              <span class="text-[10px] font-mono bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">Sans-Serif</span>
+            </div>
+            <p class="text-xs text-slate-600">Cambia la fuente tipográfica a una tipografía sans-serif de trazo limpio con espaciado amplio, facilitando la comprensión lectora.</p>
+          </div>
+          <button type="button" 
+            role="switch" 
+            id="a11y-toggle-dyslexia" 
+            aria-checked="false" 
+            onclick="toggleDyslexiaFont()" 
+            aria-label="Activar o desactivar tipografía de lectura fácil"
+            class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-700">
+            <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+          </button>
+        </div>
+
+        <!-- ATAJOS DE TECLADO RÁPIDOS -->
+        <div class="p-3 bg-slate-100 rounded-xl text-xs text-slate-600 space-y-1.5 a11y-shortcuts">
+          <p class="font-bold text-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Atajos de teclado del sistema de accesibilidad:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px] text-slate-700">
+            <div><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold">Alt + A</kbd> : Abrir/Cerrar Accesibilidad</div>
+            <div><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold">Alt + C</kbd> : Saltar al Contenido Principal</div>
+            <div><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold">Alt + +</kbd> / <kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold">Alt + −</kbd> : Ajustar tamaño de texto</div>
+            <div><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono font-bold">Escape</kbd> : Cerrar ventana modal</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3 flex-shrink-0">
+        <button type="button" 
+          onclick="resetAllAccessibilitySettings()" 
+          class="text-xs font-semibold text-rose-700 hover:text-rose-900 hover:bg-rose-50 px-3 py-2 rounded-lg transition-colors cursor-pointer border border-rose-200">
+          Restablecer ajustes por defecto
+        </button>
+        <button type="button" 
+          onclick="closeAccessibilityModal()" 
+          class="px-5 py-2 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-xs shadow-sm transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-700">
+          Guardar y Aplicar
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- END: MODAL - HERRAMIENTAS DE ACCESIBILIDAD -->
   <!-- ================================================================= -->
   <!-- BEGIN: MODAL - GENERAR AUTORREPORTE (Image 5 & Image 1 specs)     -->
   <!-- ================================================================= -->
@@ -3473,6 +4020,9 @@
 
     // INITIALIZATION LIFECYCLE
     document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initAccessibility === 'function') {
+        initAccessibility();
+      }
       renderNavigation();
       loadDashboardKPIs();
       renderCalendarDays();
@@ -3502,6 +4052,12 @@
 
       const userName = state.currentUser ? state.currentUser.fullName : 'Usuario';
       const fullText = `Excelente día ${userName}, ¿listo para empezar? Juntos construimos un entorno seguro y saludable.`;
+
+      // Reducción de movimiento (WCAG 2.3.3 / NTC 5854): Renderizado estático inmediato
+      if (typeof a11yState !== 'undefined' && a11yState.reducedMotion) {
+        container.innerText = fullText;
+        return;
+      }
 
       container.innerText = '';
       let charIndex = 0;
@@ -3856,6 +4412,19 @@
       }
 
       renderNavigation();
+      if (typeof announceA11y === 'function') {
+        const viewLabels = {
+          landing: 'Inicio, Portal Institucional SG-SST',
+          dashboard: 'Panel de Control Dashboard',
+          perfil: 'Perfil de Usuario y Datos Laborales',
+          empleados: 'Directorio de Empleados',
+          reuniones: 'Reuniones COPASST',
+          actas: 'Consulta de Actas COPASST',
+          capacitaciones: 'Cronograma de Capacitaciones y Brigadas',
+          autorreporte: 'Autorreporte de Condiciones y Salud'
+        };
+        announceA11y(`Sección cargada: ${viewLabels[viewId] || viewId}`);
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -4560,6 +5129,434 @@
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.add('hidden');
+    }
+
+    /* =========================================================================
+     * ACCESSIBILITY CONTROLLER (WCAG 2.2 NIVEL AA & NTC 5854)
+     * ========================================================================= */
+    const A11Y_STORAGE_KEY = 'secure_place_a11y_prefs_v1';
+
+    let a11yState = {
+      fontScale: 1.0,           // 0.9, 1.0, 1.15, 1.30
+      contrastMode: 'default',  // 'default', 'dark', 'light'
+      focusHighlight: false,    // boolean
+      screenReaderVoice: false, // boolean
+      grayscale: false,         // boolean
+      reducedMotion: false,     // boolean
+      dyslexicFont: false       // boolean
+    };
+
+    /**
+     * Emite un anuncio dinámico para lectores de pantalla mediante la región aria-live
+     * y mediante síntesis de voz Web Speech API si el modo asistido está activo.
+     */
+    function announceA11y(text) {
+      const announcer = document.getElementById('a11y-live-announcer');
+      if (announcer) {
+        announcer.innerText = '';
+        setTimeout(() => { announcer.innerText = text; }, 60);
+      }
+      if (a11yState.screenReaderVoice && 'speechSynthesis' in window) {
+        try {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'es-CO';
+          utterance.rate = 1.0;
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          console.warn('Speech synthesis feedback warning:', e);
+        }
+      }
+    }
+
+    /**
+     * Abre la ventana modal de accesibilidad con enfoque accesible.
+     */
+    function openAccessibilityModal() {
+      const modal = document.getElementById('modal-accessibility');
+      const triggerBtn = document.getElementById('btn-accessibility-trigger');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'true');
+
+      // Colocar foco accesible en el botón de cerrar
+      const closeBtn = document.getElementById('btn-close-a11y-modal');
+      if (closeBtn) closeBtn.focus();
+
+      announceA11y('Panel de herramientas de accesibilidad abierto. Navegue con la tecla Tab.');
+    }
+
+    /**
+     * Cierra la ventana modal de accesibilidad y devuelve el foco al disparador.
+     */
+    function closeAccessibilityModal() {
+      const modal = document.getElementById('modal-accessibility');
+      const triggerBtn = document.getElementById('btn-accessibility-trigger');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      if (triggerBtn) {
+        triggerBtn.setAttribute('aria-expanded', 'false');
+        triggerBtn.focus();
+      }
+      saveAccessibilitySettings();
+      announceA11y('Panel de accesibilidad cerrado.');
+    }
+
+    /**
+     * Ajuste de tamaño de fuente (A+ / A-) sin alterar maquetación.
+     */
+    function setFontScale(scale, shouldAnnounce = true) {
+      a11yState.fontScale = Math.min(Math.max(Number(scale.toFixed(2)), 0.85), 1.5);
+      const percentage = Math.round(a11yState.fontScale * 100);
+      document.documentElement.style.fontSize = `${percentage}%`;
+
+      const badge = document.getElementById('a11y-text-scale-badge');
+      if (badge) {
+        let label = `${percentage}%`;
+        if (percentage === 100) label += ' (Normal)';
+        else if (percentage > 100) label += ' (Aumentado)';
+        else label += ' (Reducido)';
+        badge.innerText = label;
+      }
+
+      // Actualizar estado visual de los botones de preajuste
+      document.querySelectorAll('.a11y-font-preset').forEach(btn => {
+        const btnScale = parseFloat(btn.getAttribute('data-scale'));
+        const isMatch = Math.abs(btnScale - a11yState.fontScale) < 0.04;
+        btn.classList.toggle('bg-brand-50', isMatch);
+        btn.classList.toggle('border-brand-500', isMatch);
+        btn.classList.toggle('text-brand-800', isMatch);
+        btn.classList.toggle('font-bold', isMatch);
+        btn.classList.toggle('border-slate-200', !isMatch);
+        btn.classList.toggle('text-slate-600', !isMatch);
+      });
+
+      if (shouldAnnounce) {
+        announceA11y(`Tamaño de texto ajustado al ${percentage} por ciento`);
+      }
+      saveAccessibilitySettings();
+    }
+
+    function adjustFontSize(deltaPercent) {
+      const current = a11yState.fontScale || 1.0;
+      setFontScale(current + (deltaPercent / 100));
+    }
+
+    function resetFontSize() {
+      setFontScale(1.0);
+    }
+
+    /**
+     * Alterna modo de alto contraste: estándar, oscuro (fondo negro/texto amarillo) o claro.
+     */
+    function setContrastMode(mode, shouldAnnounce = true) {
+      a11yState.contrastMode = mode;
+      const html = document.documentElement;
+      html.classList.remove('a11y-contrast-dark', 'a11y-contrast-light');
+
+      if (mode === 'dark') {
+        html.classList.add('a11y-contrast-dark');
+      } else if (mode === 'light') {
+        html.classList.add('a11y-contrast-light');
+      }
+
+      // Actualizar botones de contraste
+      ['default', 'dark', 'light'].forEach(m => {
+        const btn = document.getElementById(`a11y-btn-contrast-${m}`);
+        if (!btn) return;
+        const isActive = (m === mode);
+        btn.setAttribute('aria-pressed', String(isActive));
+        const check = btn.querySelector('.a11y-contrast-check');
+        if (check) check.classList.toggle('hidden', !isActive);
+
+        if (m === 'default') {
+          btn.classList.toggle('border-brand-600', isActive);
+          btn.classList.toggle('border-slate-300', !isActive);
+        } else if (m === 'dark') {
+          btn.classList.toggle('border-yellow-400', isActive);
+          btn.classList.toggle('border-slate-300', !isActive);
+        } else if (m === 'light') {
+          btn.classList.toggle('border-black', isActive);
+          btn.classList.toggle('border-slate-300', !isActive);
+        }
+      });
+
+      if (shouldAnnounce) {
+        const names = {
+          default: 'Modo estándar restaurado',
+          dark: 'Modo de alto contraste oscuro activado. Fondo negro con texto amarillo y blanco.',
+          light: 'Modo de alto contraste claro activado. Fondo blanco con texto negro sólido.'
+        };
+        announceA11y(names[mode] || mode);
+      }
+      saveAccessibilitySettings();
+    }
+
+    /**
+     * Resaltado de foco de navegación por teclado (focus outline de 3.5px)
+     */
+    function toggleKeyboardFocusHighlight(forceVal) {
+      const active = (typeof forceVal === 'boolean') ? forceVal : !a11yState.focusHighlight;
+      a11yState.focusHighlight = active;
+      document.documentElement.classList.toggle('a11y-focus-visible', active);
+
+      const toggle = document.getElementById('a11y-toggle-focus');
+      if (toggle) {
+        toggle.setAttribute('aria-checked', String(active));
+        toggle.classList.toggle('bg-brand-600', active);
+        toggle.classList.toggle('bg-slate-300', !active);
+        const knob = toggle.querySelector('span');
+        if (knob) {
+          knob.classList.toggle('translate-x-5', active);
+          knob.classList.toggle('translate-x-0', !active);
+        }
+      }
+
+      announceA11y(active ? 'Resaltado visible de foco de teclado activado' : 'Resaltado de foco desactivado');
+      saveAccessibilitySettings();
+    }
+
+    /**
+     * Lector de pantalla asistido con síntesis de voz y anuncios ARIA
+     */
+    function toggleScreenReaderAssistance(forceVal) {
+      const active = (typeof forceVal === 'boolean') ? forceVal : !a11yState.screenReaderVoice;
+      a11yState.screenReaderVoice = active;
+
+      const toggle = document.getElementById('a11y-toggle-screenreader');
+      if (toggle) {
+        toggle.setAttribute('aria-checked', String(active));
+        toggle.classList.toggle('bg-brand-600', active);
+        toggle.classList.toggle('bg-slate-300', !active);
+        const knob = toggle.querySelector('span');
+        if (knob) {
+          knob.classList.toggle('translate-x-5', active);
+          knob.classList.toggle('translate-x-0', !active);
+        }
+      }
+
+      announceA11y(active ? 'Lector de pantalla asistido por voz activado' : 'Lector de pantalla asistido desactivado');
+      saveAccessibilitySettings();
+    }
+
+    /**
+     * Modo Escala de Grises / Monocromo (0% saturación cromática)
+     */
+    function toggleGrayscaleMode(forceVal) {
+      const active = (typeof forceVal === 'boolean') ? forceVal : !a11yState.grayscale;
+      a11yState.grayscale = active;
+      document.documentElement.classList.toggle('a11y-grayscale', active);
+
+      const toggle = document.getElementById('a11y-toggle-grayscale');
+      if (toggle) {
+        toggle.setAttribute('aria-checked', String(active));
+        toggle.classList.toggle('bg-brand-600', active);
+        toggle.classList.toggle('bg-slate-300', !active);
+        const knob = toggle.querySelector('span');
+        if (knob) {
+          knob.classList.toggle('translate-x-5', active);
+          knob.classList.toggle('translate-x-0', !active);
+        }
+      }
+
+      announceA11y(active ? 'Modo escala de grises activado' : 'Modo escala de grises desactivado');
+      saveAccessibilitySettings();
+    }
+
+    /**
+     * Reducción de movimiento y desactivación de animaciones automáticas
+     */
+    function toggleReducedMotion(forceVal) {
+      const active = (typeof forceVal === 'boolean') ? forceVal : !a11yState.reducedMotion;
+      a11yState.reducedMotion = active;
+      document.documentElement.classList.toggle('a11y-reduce-motion', active);
+
+      const toggle = document.getElementById('a11y-toggle-motion');
+      if (toggle) {
+        toggle.setAttribute('aria-checked', String(active));
+        toggle.classList.toggle('bg-brand-600', active);
+        toggle.classList.toggle('bg-slate-300', !active);
+        const knob = toggle.querySelector('span');
+        if (knob) {
+          knob.classList.toggle('translate-x-5', active);
+          knob.classList.toggle('translate-x-0', !active);
+        }
+      }
+
+      // Detener de inmediato cualquier efecto de máquina de escribir o intervalos activos
+      if (active && state.typewriterInterval) {
+        clearInterval(state.typewriterInterval);
+        const typewriterEl = document.getElementById('landing-typewriter-text');
+        if (typewriterEl) {
+          const userName = state.currentUser ? state.currentUser.fullName : 'Usuario';
+          typewriterEl.innerText = `Excelente día ${userName}, ¿listo para empezar? Juntos construimos un entorno seguro y saludable.`;
+        }
+      }
+
+      announceA11y(active ? 'Reducción de movimiento activada. Animaciones desactivadas.' : 'Animaciones normales restauradas');
+      saveAccessibilitySettings();
+    }
+
+    /**
+     * Tipografía hiperlegible (Dislexia / Lectura Fácil)
+     */
+    function toggleDyslexiaFont(forceVal) {
+      const active = (typeof forceVal === 'boolean') ? forceVal : !a11yState.dyslexicFont;
+      a11yState.dyslexicFont = active;
+      document.documentElement.classList.toggle('a11y-dyslexic-font', active);
+
+      const toggle = document.getElementById('a11y-toggle-dyslexia');
+      if (toggle) {
+        toggle.setAttribute('aria-checked', String(active));
+        toggle.classList.toggle('bg-brand-600', active);
+        toggle.classList.toggle('bg-slate-300', !active);
+        const knob = toggle.querySelector('span');
+        if (knob) {
+          knob.classList.toggle('translate-x-5', active);
+          knob.classList.toggle('translate-x-0', !active);
+        }
+      }
+
+      announceA11y(active ? 'Tipografía de lectura fácil activada' : 'Tipografía estándar restaurada');
+      saveAccessibilitySettings();
+    }
+
+    /**
+     * Restablece todas las opciones a los valores predeterminados
+     */
+    function resetAllAccessibilitySettings() {
+      setFontScale(1.0, false);
+      setContrastMode('default', false);
+      toggleKeyboardFocusHighlight(false);
+      toggleScreenReaderAssistance(false);
+      toggleGrayscaleMode(false);
+      toggleReducedMotion(false);
+      toggleDyslexiaFont(false);
+      try {
+        localStorage.removeItem(A11Y_STORAGE_KEY);
+      } catch (e) {}
+      announceA11y('Todos los ajustes de accesibilidad han sido restablecidos a sus valores predeterminados.');
+    }
+
+    /**
+     * Guarda la configuración de accesibilidad en localStorage
+     */
+    function saveAccessibilitySettings() {
+      try {
+        localStorage.setItem(A11Y_STORAGE_KEY, JSON.stringify(a11yState));
+      } catch (e) {
+        console.warn('Error al guardar configuración de accesibilidad:', e);
+      }
+    }
+
+    /**
+     * Inicialización del sistema de accesibilidad al cargar la página
+     */
+    function initAccessibility() {
+      // 1. Detección automática de preferencia del sistema operativo para reducción de movimiento
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        a11yState.reducedMotion = true;
+      }
+
+      // 2. Cargar preferencias persistidas del usuario
+      try {
+        const saved = localStorage.getItem(A11Y_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          a11yState = { ...a11yState, ...parsed };
+        }
+      } catch (e) {
+        console.warn('Error al leer preferencias de accesibilidad:', e);
+      }
+
+      // 3. Aplicar preferencias restauradas
+      if (a11yState.fontScale && a11yState.fontScale !== 1.0) {
+        setFontScale(a11yState.fontScale, false);
+      } else {
+        setFontScale(1.0, false);
+      }
+      setContrastMode(a11yState.contrastMode || 'default', false);
+      if (a11yState.focusHighlight) toggleKeyboardFocusHighlight(true);
+      if (a11yState.screenReaderVoice) toggleScreenReaderAssistance(true);
+      if (a11yState.grayscale) toggleGrayscaleMode(true);
+      if (a11yState.reducedMotion) toggleReducedMotion(true);
+      if (a11yState.dyslexicFont) toggleDyslexiaFont(true);
+
+      // 4. Configuración de atajos de teclado globales y trampa de foco para modal
+      window.addEventListener('keydown', (e) => {
+        // Alt + A: Abrir / Cerrar menú de accesibilidad
+        if (e.altKey && (e.key === 'a' || e.key === 'A')) {
+          e.preventDefault();
+          const modal = document.getElementById('modal-accessibility');
+          if (modal && !modal.classList.contains('hidden')) {
+            closeAccessibilityModal();
+          } else {
+            openAccessibilityModal();
+          }
+        }
+
+        // Alt + C: Saltar al contenido principal
+        if (e.altKey && (e.key === 'c' || e.key === 'C')) {
+          e.preventDefault();
+          const main = document.getElementById('main-content-viewport');
+          if (main) {
+            main.setAttribute('tabindex', '-1');
+            main.focus();
+            announceA11y('Navegación saltada al contenido principal.');
+          }
+        }
+
+        // Alt + '+' o '=': Aumentar texto
+        if (e.altKey && (e.key === '+' || e.key === '=')) {
+          e.preventDefault();
+          adjustFontSize(10);
+        }
+
+        // Alt + '-': Reducir texto
+        if (e.altKey && (e.key === '-' || e.key === '_')) {
+          e.preventDefault();
+          adjustFontSize(-10);
+        }
+
+        // Escape: Cerrar modal si está abierto
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('modal-accessibility');
+          if (modal && !modal.classList.contains('hidden')) {
+            closeAccessibilityModal();
+          }
+        }
+
+        // Trampa de foco (Focus Trap) dentro de la ventana modal de accesibilidad
+        const modalEl = document.getElementById('modal-accessibility');
+        if (modalEl && !modalEl.classList.contains('hidden') && e.key === 'Tab') {
+          const focusables = modalEl.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+          if (focusables.length > 0) {
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey) {
+              if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+              }
+            } else {
+              if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+              }
+            }
+          }
+        }
+      });
+
+      // Cerrar modal al hacer clic en el fondo oscuro exterior
+      const modalA11y = document.getElementById('modal-accessibility');
+      if (modalA11y) {
+        modalA11y.addEventListener('click', (e) => {
+          if (e.target === modalA11y) {
+            closeAccessibilityModal();
+          }
+        });
+      }
     }
   </script>
   <!-- END: Application State & Routing JavaScript -->
